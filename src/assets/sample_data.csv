@@ -1,0 +1,301 @@
+id,isdrawn,category,rank,serviceline,prizewon,donation,registereddatetime,registered,name,empid
+0,False,general,Manager,consulting,,,2024-10-17 14:58:46 ,True,Rhonda Nguyen,4392811
+1,False,intern,Manager,cyber,,,,False,Donna Sampson,07104
+2,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,Glenn Gibbs,7040937
+3,False,general,Junior,cyber,,,2024-10-17 14:58:46 ,True,Shelly Kennedy,971652
+4,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Karen Wells,09239
+5,False,intern,Manager,tax,,,2024-10-17 14:58:46 ,True,Brittney Ryan,96815
+6,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Rebecca Luna,9582925
+7,False,general,Manager,tax,,,2024-10-17 14:58:46 ,True,Hailey Rivera,2742624
+8,False,general,Junior,consulting,,,2024-10-17 14:58:46 ,True,Mrs. Terry Fisher,56233
+9,False,general,Manager,tax,,,2024-10-17 14:58:46 ,True,John Walker,86747
+10,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Janice Chandler,01347
+11,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,Ms. Hannah Nixon,3051892
+12,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Michael Chen,2647524
+13,False,general,,audit,,,2024-10-17 14:58:46 ,True,Johnny Ward,415015
+14,False,general,Manager,assurance,,,2024-10-17 14:58:46 ,True,Daniel Perry,979826
+15,False,general,Senior,consulting,,,,False,Desiree Daniel,402389
+16,False,general,,consulting,,,2024-10-17 14:58:46 ,True,David Peters,266227
+17,False,intern,Junior,cyber,,,,False,Ryan Lee,110192
+18,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,Linda Taylor,742480
+19,False,general,,consulting,,,2024-10-17 14:58:46 ,True,Michael Jackson,832249
+20,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,Valerie Tate,97108
+21,False,general,,assurance,,,2024-10-17 14:58:46 ,True,Lori Johnson,3935318
+22,False,intern,Senior,audit,,,2024-10-17 14:58:46 ,True,Jennifer Jones,881186
+23,False,intern,Senior,consulting,,,,False,Ryan Spencer,1449547
+24,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,Wendy Peters,635979
+25,False,general,,tax,,,2024-10-17 14:58:46 ,True,Deborah Douglas,451564
+26,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,Dominique Murray,026768
+27,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Phillip Pitts,44819
+28,False,general,,cyber,,,2024-10-17 14:58:46 ,True,Carrie Webster,4266452
+29,False,general,,tax,,,2024-10-17 14:58:46 ,True,Jeffrey Crawford,3950199
+30,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Monica Green,06390
+31,False,general,Manager,tax,,,2024-10-17 14:58:46 ,True,Tyler Jackson,645976
+32,False,general,Junior,tax,,,2024-10-17 14:58:46 ,True,Drew Hooper,7191737
+33,False,intern,,assurance,,,2024-10-17 14:58:46 ,True,Jordan Guerrero,134979
+34,False,intern,,assurance,,,2024-10-17 14:58:46 ,True,Mary Matthews,007857
+35,False,general,,assurance,,,2024-10-17 14:58:46 ,True,Scott Pearson,7526068
+36,False,intern,,consulting,,,2024-10-17 14:58:46 ,True,Charles Howard,3563642
+37,False,general,Manager,tax,,,2024-10-17 14:58:46 ,True,Amber Hubbard,805472
+38,False,general,,consulting,,,2024-10-17 14:58:46 ,True,Amber Mills,32391
+39,False,general,Junior,cyber,,,2024-10-17 14:58:46 ,True,Daisy Stokes,0671747
+40,False,intern,Manager,tax,,,2024-10-17 14:58:46 ,True,Jesse Anderson,4252055
+41,False,intern,,assurance,,,2024-10-17 14:58:46 ,True,Brenda Fowler,272917
+42,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Dr. Sean Dixon II,8859812
+43,False,general,Junior,consulting,,,,False,Amy Williams,88672
+44,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Jordan Young,67393
+45,False,general,,tax,,,2024-10-17 14:58:46 ,True,Brooke Callahan,728390
+46,False,general,Manager,consulting,,,2024-10-17 14:58:46 ,True,Carrie Ferguson,2956170
+47,False,general,Manager,assurance,,,,False,Michael Kelley,88908
+48,False,general,Junior,consulting,,,2024-10-17 14:58:46 ,True,Matthew Gutierrez,716730
+49,False,intern,Senior,consulting,,,,False,Jamie Gonzalez,1670965
+50,False,general,,cyber,,,2024-10-17 14:58:46 ,True,Richard Horne,2393031
+51,False,intern,Senior,audit,,,,False,Cynthia Lopez,14748
+52,False,general,Senior,consulting,,,2024-10-17 14:58:46 ,True,Teresa Martinez,75054
+53,False,general,Senior,assurance,,,,False,Derrick Grimes,36040
+54,False,general,Junior,tax,,,2024-10-17 14:58:46 ,True,Sally Hall,55215
+55,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Jesus Stewart,2340465
+56,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Heather Small,82339
+57,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Sandra Richards,192092
+58,False,general,Junior,consulting,,,2024-10-17 14:58:46 ,True,Mrs. Jennifer Cole,5950067
+59,False,general,Junior,consulting,,,2024-10-17 14:58:46 ,True,Nicole Church,2694410
+60,False,general,,assurance,,,2024-10-17 14:58:46 ,True,Brandon Conrad,1967665
+61,False,intern,Senior,cyber,,,,False,Anthony Nguyen,6831177
+62,False,intern,Senior,cyber,,,2024-10-17 14:58:46 ,True,Larry Lopez,36838
+63,False,intern,Junior,tax,,,,False,Jonathan Walton,312492
+64,False,general,,audit,,,2024-10-17 14:58:46 ,True,Brianna Baldwin,2926592
+65,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Aaron Bates,1487295
+66,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Joshua Willis,954750
+67,False,intern,Manager,tax,,,,False,Melissa Adams,5757308
+68,False,general,Junior,assurance,,,,False,Ryan Potter,042185
+69,False,intern,Junior,consulting,,,,False,Jessica Newman,33571
+70,False,general,Junior,assurance,,,,False,Steven Wood,69953
+71,False,intern,Junior,cyber,,,,False,Philip Guerra,61562
+72,False,general,,consulting,,,2024-10-17 14:58:46 ,True,Jacqueline Wagner,199946
+73,False,intern,Junior,audit,,,2024-10-17 14:58:46 ,True,Walter West,128618
+74,False,intern,Senior,cyber,,,2024-10-17 14:58:46 ,True,Antonio Smith,3591726
+75,False,intern,Junior,audit,,,,False,Cindy Yang,5348699
+76,False,general,Junior,assurance,,,2024-10-17 14:58:46 ,True,Jeanette Gilmore,8024963
+77,False,general,,tax,,,2024-10-17 14:58:46 ,True,Damon Cruz,210835
+78,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Anthony Norton,241817
+79,False,general,Senior,audit,,,2024-10-17 14:58:46 ,True,Ariel Jimenez,646798
+80,False,intern,Senior,cyber,,,,False,David Lyons,1861586
+81,False,general,,consulting,,,2024-10-17 14:58:46 ,True,William Lopez,03737
+82,False,intern,Manager,tax,,,2024-10-17 14:58:46 ,True,Theresa Lara,468159
+83,False,general,Junior,consulting,,,2024-10-17 14:58:46 ,True,Brianna Perez,6610707
+84,False,intern,Manager,consulting,,,,False,Darlene Wilson,68307
+85,False,intern,,consulting,,,2024-10-17 14:58:46 ,True,Amanda Fernandez,691567
+86,False,intern,Junior,consulting,,,,False,Michael Hubbard,1465864
+87,False,intern,Senior,assurance,,,,False,Katrina Davis,90063
+88,False,intern,Senior,audit,,,2024-10-17 14:58:46 ,True,Maria Parrish DDS,022054
+89,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Robert Mitchell,82906
+90,False,general,Manager,assurance,,,2024-10-17 14:58:46 ,True,Ethan Norman,7513517
+91,False,general,Junior,assurance,,,,False,Kevin White,6405036
+92,False,general,,audit,,,2024-10-17 14:58:46 ,True,Molly Myers,9114020
+93,False,intern,Manager,tax,,,,False,Austin Martin,6182306
+94,False,general,Senior,consulting,,,2024-10-17 14:58:46 ,True,Susan Webster,4686256
+95,False,general,Manager,audit,,,2024-10-17 14:58:46 ,True,Nathan Torres,95551
+96,False,general,Manager,cyber,,,2024-10-17 14:58:46 ,True,Grace Mcdowell,82341
+97,False,intern,Junior,assurance,,,,False,Christopher Banks,41060
+98,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,John Mccall,54821
+99,False,general,,audit,,,2024-10-17 14:58:46 ,True,Theresa Price,8945532
+100,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Natasha Aguirre,017105
+101,False,intern,Junior,audit,,,2024-10-17 14:58:46 ,True,John White,147972
+102,False,general,Junior,consulting,,,2024-10-17 14:58:46 ,True,Sonya Young,79618
+103,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Molly Martin,8505694
+104,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,Gary Daniels,6079318
+105,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Ms. Cheryl Taylor,64182
+106,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Kelly Gibson,7715972
+107,False,general,Manager,tax,,,,False,Johnny Turner,651536
+108,False,intern,Senior,consulting,,,,False,William Bullock,803738
+109,False,general,,audit,,,2024-10-17 14:58:46 ,True,Zachary Lucas,3800465
+110,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Jeffrey Smith,6713870
+111,False,general,,consulting,,,2024-10-17 14:58:46 ,True,Joyce Novak,2091479
+112,False,general,Manager,cyber,,,2024-10-17 14:58:46 ,True,Crystal Anderson,129474
+113,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,William Moreno,04879
+114,False,intern,Junior,tax,,,2024-10-17 14:58:46 ,True,Brian Fisher,75356
+115,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Lori Hayden,505775
+116,False,general,,audit,,,2024-10-17 14:58:46 ,True,Bryan Brewer,6394963
+117,False,general,,tax,,,,False,John Medina,492344
+118,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Christopher Kim,143656
+119,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Jose Campbell,621922
+120,False,general,,audit,,,2024-10-17 14:58:46 ,True,Jaclyn Cunningham,1322044
+121,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Donna Stevens,0596087
+122,False,intern,Senior,cyber,,,2024-10-17 14:58:46 ,True,George Daniels,33094
+123,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Wendy Ortiz,14478
+124,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Joel Villarreal,44452
+125,False,intern,Manager,audit,,,2024-10-17 14:58:46 ,True,Danielle Lee,1928925
+126,False,general,Manager,cyber,,,2024-10-17 14:58:46 ,True,Melissa Elliott,19518
+127,False,intern,,consulting,,,2024-10-17 14:58:46 ,True,Peter Garza,45927
+128,False,general,Manager,consulting,,,2024-10-17 14:58:46 ,True,Anthony Porter,276214
+129,False,general,Junior,cyber,,,2024-10-17 14:58:46 ,True,Christine Allen,43519
+130,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,John Ryan,5213817
+131,False,general,Manager,cyber,,,2024-10-17 14:58:46 ,True,Corey Brown,613364
+132,False,intern,Manager,tax,,,,False,Mary Hobbs,5791797
+133,False,intern,Senior,consulting,,,2024-10-17 14:58:46 ,True,Daniel Wilson,4648272
+134,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,Jeffrey Smith,99763
+135,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Christopher Coleman,4944037
+136,False,general,Junior,assurance,,,2024-10-17 14:58:46 ,True,Ryan Baldwin,914105
+137,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Paul Santana,259979
+138,False,intern,Manager,consulting,,,2024-10-17 14:58:46 ,True,Vincent Sullivan,35440
+139,False,intern,,audit,,,,False,Patrick Lopez,4302776
+140,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,John Rodriguez,248579
+141,False,intern,Junior,assurance,,,,False,Stephen Walker,1611121
+142,False,general,Junior,cyber,,,2024-10-17 14:58:46 ,True,Angel Simmons,805408
+143,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Andrew Greene,90145
+144,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Samantha Bradford,046827
+145,False,intern,,cyber,,,,False,Danielle Keller,450141
+146,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,Emily Gardner,10385
+147,False,general,Senior,cyber,,,2024-10-17 14:58:46 ,True,Gregory Olson,1047610
+148,False,intern,Manager,audit,,,2024-10-17 14:58:46 ,True,Caitlin Smith,369657
+149,False,intern,Manager,consulting,,,2024-10-17 14:58:46 ,True,Robert Lozano,9550636
+150,False,intern,,cyber,,,2024-10-17 14:58:46 ,True,James Williams,374062
+151,False,intern,Senior,tax,,,,False,Stephanie Rodriguez,652169
+152,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Taylor Gonzalez,161323
+153,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Candice Santos,98196
+154,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Christopher Buckley,235770
+155,False,intern,,consulting,,,2024-10-17 14:58:46 ,True,Katherine Gallegos,4532933
+156,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Alexandra Robinson,8519802
+157,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Adriana Rogers,5260164
+158,False,intern,Junior,audit,,,2024-10-17 14:58:46 ,True,Gary Rivas,927475
+159,False,intern,,cyber,,,2024-10-17 14:58:46 ,True,Danny Chavez,14943
+160,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,Dawn Gibson,301933
+161,False,general,Junior,audit,,,,False,Nicholas Alvarez,73537
+162,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Reginald Lynch,28583
+163,False,general,Junior,assurance,,,,False,Matthew Wells,24549
+164,False,general,Junior,tax,,,2024-10-17 14:58:46 ,True,Steven Barrett,712544
+165,False,general,Junior,audit,,,2024-10-17 14:58:46 ,True,Scott White,6450985
+166,False,general,,tax,,,2024-10-17 14:58:46 ,True,Andrew Smith,26624
+167,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,Pamela Daniels,443008
+168,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Linda Morales,3031641
+169,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Matthew Dixon,99980
+170,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Bobby Bradley,32217
+171,False,general,,consulting,,,2024-10-17 14:58:46 ,True,Robert Roberts,38000
+172,False,general,Manager,assurance,,,2024-10-17 14:58:46 ,True,Linda Alvarez,20497
+173,False,intern,,consulting,,,2024-10-17 14:58:46 ,True,Debra Parker,0694465
+174,False,general,,tax,,,2024-10-17 14:58:46 ,True,Todd Carter,84130
+175,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Alexander Morris,7939872
+176,False,intern,Manager,consulting,,,2024-10-17 14:58:46 ,True,Ryan Wilson,566141
+177,False,general,Senior,audit,,,,False,Zachary Taylor,1386836
+178,False,general,Junior,audit,,,2024-10-17 14:58:46 ,True,Howard Baker,689096
+179,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Linda Neal,2608596
+180,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,James Fuller,47371
+181,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Amber Richards,7863865
+182,False,general,,cyber,,,2024-10-17 14:58:46 ,True,Hayley Campbell,70754
+183,False,general,Senior,consulting,,,2024-10-17 14:58:46 ,True,Judith Garcia,15391
+184,False,intern,Junior,tax,,,2024-10-17 14:58:46 ,True,Rebecca Evans,102517
+185,False,intern,Senior,audit,,,,False,Drew Lopez,42428
+186,False,intern,Manager,tax,,,2024-10-17 14:58:46 ,True,Vanessa Zhang,814039
+187,False,intern,Senior,audit,,,2024-10-17 14:58:46 ,True,James Obrien,614407
+188,False,general,,assurance,,,2024-10-17 14:58:46 ,True,Brandy Morrison,06132
+189,False,general,,tax,,,2024-10-17 14:58:46 ,True,Philip Thomas,4142983
+190,False,general,Senior,audit,,,2024-10-17 14:58:46 ,True,Breanna Schneider,15810
+191,False,general,Junior,assurance,,,2024-10-17 14:58:46 ,True,Walter Wilcox,30120
+192,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Catherine Jordan,908270
+193,False,general,Senior,cyber,,,2024-10-17 14:58:46 ,True,Kimberly Lynn,087733
+194,False,intern,Manager,audit,,,2024-10-17 14:58:46 ,True,Monique Johnson,9871313
+195,False,general,Manager,audit,,,,False,James Bell,34384
+196,False,intern,Senior,tax,,,,False,Charles Garcia,481678
+197,False,general,,audit,,,2024-10-17 14:58:46 ,True,Raymond Smith,97243
+198,False,general,Manager,audit,,,,False,Ryan Fisher,6333885
+199,False,general,,cyber,,,,False,Brian Davis,6226018
+200,False,general,Junior,cyber,,,2024-10-17 14:58:46 ,True,Faith Garcia,173513
+201,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Linda White,87778
+202,False,general,Junior,audit,,,2024-10-17 14:58:46 ,True,Suzanne Owens,8495442
+203,False,general,Senior,cyber,,,2024-10-17 14:58:46 ,True,Tyrone Carter,854256
+204,False,general,Junior,cyber,,,,False,Dean Edwards,413340
+205,False,general,,assurance,,,2024-10-17 14:58:46 ,True,Sean Rodriguez,25406
+206,False,intern,Manager,tax,,,2024-10-17 14:58:46 ,True,Jennifer Beasley,515788
+207,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Darryl Walker,56581
+208,False,general,,cyber,,,2024-10-17 14:58:46 ,True,Susan Kennedy,1894009
+209,False,general,,tax,,,2024-10-17 14:58:46 ,True,Vanessa Ewing,9898750
+210,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,Jeremy Guerrero,39253
+211,False,intern,Manager,tax,,,2024-10-17 14:58:46 ,True,Terry Melendez,22459
+212,False,general,Junior,audit,,,2024-10-17 14:58:46 ,True,Justin Wheeler,619863
+213,False,intern,,cyber,,,,False,Stephanie Stevenson,73035
+214,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Daniel Lucero,50506
+215,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Barbara Shaw,131045
+216,False,intern,Senior,tax,,,,False,George Potts,8798220
+217,False,general,Junior,audit,,,2024-10-17 14:58:46 ,True,John Garcia,2632145
+218,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Christine Gill,542310
+219,False,general,Junior,audit,,,2024-10-17 14:58:46 ,True,John Matthews,37767
+220,False,general,,cyber,,,2024-10-17 14:58:46 ,True,Jo Perkins,14448
+221,False,general,,audit,,,,False,Charles Goodwin,45054
+222,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Diana Bullock DVM,91883
+223,False,general,Junior,cyber,,,2024-10-17 14:58:46 ,True,Michelle Martinez,3097102
+224,False,intern,Junior,tax,,,2024-10-17 14:58:46 ,True,Heather Arroyo,5211124
+225,False,general,Junior,tax,,,2024-10-17 14:58:46 ,True,Brian Adams,90067
+226,False,intern,Senior,cyber,,,2024-10-17 14:58:46 ,True,Dawn Moore,4768446
+227,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Timothy Brown,31136
+228,False,intern,,assurance,,,,False,Dawn Roach,0738123
+229,False,general,Senior,audit,,,,False,Daniel Walter,0493194
+230,False,general,,tax,,,2024-10-17 14:58:46 ,True,Shelby King,5583603
+231,False,intern,Manager,audit,,,2024-10-17 14:58:46 ,True,Patrick Smith,0318689
+232,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Debbie Byrd,3550230
+233,False,general,Manager,consulting,,,,False,Dylan Rodriguez,1365740
+234,False,general,Manager,tax,,,2024-10-17 14:58:46 ,True,William Ball,158352
+235,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Cindy Stark,5169940
+236,False,general,,audit,,,2024-10-17 14:58:46 ,True,Julie Cook,80633
+237,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,Kristie Braun,5456940
+238,False,general,Manager,cyber,,,2024-10-17 14:58:46 ,True,Monica George DDS,6047852
+239,False,intern,Manager,audit,,,2024-10-17 14:58:46 ,True,Charles Martinez,6109494
+240,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Michael Patterson,266067
+241,False,general,Senior,cyber,,,2024-10-17 14:58:46 ,True,Peter Wilson,82885
+242,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Anthony Powers,887664
+243,False,intern,,tax,,,2024-10-17 14:58:46 ,True,Loretta Mcclain,9396942
+244,False,general,Manager,assurance,,,,False,Ernest Curry,50645
+245,False,general,Senior,cyber,,,,False,David Baker,321221
+246,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Tyler Anderson,6892983
+247,False,general,,tax,,,2024-10-17 14:58:46 ,True,Susan Kelley,232407
+248,False,general,Junior,assurance,,,2024-10-17 14:58:46 ,True,Cynthia Jordan,7170341
+249,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,Matthew Cunningham,651191
+250,False,general,Manager,consulting,,,,False,Nicholas Dunlap,4794408
+251,False,intern,Senior,consulting,,,2024-10-17 14:58:46 ,True,Omar Boyd,45865
+252,False,intern,,consulting,,,,False,Mary Gamble,221541
+253,False,general,Senior,tax,,,2024-10-17 14:58:46 ,True,William Robbins,160397
+254,False,general,Junior,tax,,,2024-10-17 14:58:46 ,True,Richard Thomas,36026
+255,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Cindy Rice,658154
+256,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Amy Solomon,714541
+257,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,David Herrera,2140130
+258,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Blake Williams,228319
+259,False,general,,consulting,,,2024-10-17 14:58:46 ,True,Blake Wilson,58319
+260,False,general,Manager,tax,,,2024-10-17 14:58:46 ,True,Shawn Daniels,26883
+261,False,intern,,cyber,,,2024-10-17 14:58:46 ,True,George Garcia,183581
+262,False,general,Senior,consulting,,,2024-10-17 14:58:46 ,True,Patricia Ramirez,120267
+263,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,David Ramirez,2513590
+264,False,general,,assurance,,,,False,John Jones,19988
+265,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Larry Gonzales,37096
+266,False,general,Manager,consulting,,,2024-10-17 14:58:46 ,True,Joseph Cortez,271747
+267,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Kyle Marquez,9147662
+268,False,intern,Junior,tax,,,2024-10-17 14:58:46 ,True,Ryan Dorsey,45975
+269,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Sara Holland,2905854
+270,False,general,Junior,assurance,,,2024-10-17 14:58:46 ,True,Christopher Hernandez,71589
+271,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Thomas Watson,46855
+272,False,intern,Senior,audit,,,2024-10-17 14:58:46 ,True,Amanda Stewart,6438533
+273,False,intern,Senior,tax,,,2024-10-17 14:58:46 ,True,Brian Barnes,3229296
+274,False,general,Manager,assurance,,,2024-10-17 14:58:46 ,True,David Quinn,512621
+275,False,intern,,audit,,,2024-10-17 14:58:46 ,True,Karen Randolph,843436
+276,False,general,,assurance,,,2024-10-17 14:58:46 ,True,Shannon Jones,9177136
+277,False,general,,tax,,,2024-10-17 14:58:46 ,True,Kevin Adams,15419
+278,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Jon Nguyen,480456
+279,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Garrett Villarreal,1321112
+280,False,intern,Junior,audit,,,2024-10-17 14:58:46 ,True,Anthony Donaldson,84799
+281,False,intern,Junior,audit,,,2024-10-17 14:58:46 ,True,Christina Sullivan,845016
+282,False,general,Junior,assurance,,,2024-10-17 14:58:46 ,True,Troy Murray,264996
+283,False,general,Junior,cyber,,,2024-10-17 14:58:46 ,True,Larry Glover,296946
+284,False,general,Junior,tax,,,2024-10-17 14:58:46 ,True,Julia Greene,71070
+285,False,general,Senior,audit,,,2024-10-17 14:58:46 ,True,Colton Sanders,47134
+286,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Laurie Edwards,67399
+287,False,intern,Senior,assurance,,,,False,Joseph Hodge,30492
+288,False,general,Senior,assurance,,,2024-10-17 14:58:46 ,True,Garrett Davis,715645
+289,False,intern,Junior,consulting,,,2024-10-17 14:58:46 ,True,Nicholas Gilbert,27904
+290,False,intern,Manager,consulting,,,2024-10-17 14:58:46 ,True,Stephen Nguyen,7678909
+291,False,general,Senior,consulting,,,2024-10-17 14:58:46 ,True,Scott Hansen,68113
+292,False,intern,Junior,cyber,,,2024-10-17 14:58:46 ,True,Crystal Lopez,9512047
+293,False,general,Manager,audit,,,,False,Joseph Webb,9958153
+294,False,intern,Junior,assurance,,,2024-10-17 14:58:46 ,True,Brian Stewart,9357661
+295,False,intern,Junior,audit,,,,False,Beth Lucas,878707
+296,False,general,Junior,tax,,,2024-10-17 14:58:46 ,True,Kari Mata,8177925
+297,False,intern,Manager,cyber,,,2024-10-17 14:58:46 ,True,Antonio Nguyen,77536
+298,False,intern,Manager,assurance,,,2024-10-17 14:58:46 ,True,Jesse Hoffman,407029
+299,False,intern,Senior,assurance,,,2024-10-17 14:58:46 ,True,William Estrada,6715936

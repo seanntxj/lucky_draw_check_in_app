@@ -1,35 +1,120 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 
-function App() {
-  const [count, setCount] = useState(0)
+import LandingPage from "@/components/pages/landingPage";
+import PrizesAdminDashboard from "@/components/pages/prizesAdminDashboard";
+import DrawingMain from "@/components/pages/drawingMain";
+import { Toaster } from "sonner";
+import { AuroraBackground } from "./components/ui/aurora-background";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import BounceInMotionDiv from "./components/ui/bounce-in-motion-div";
+import CheckIn from "./components/pages/checkIn";
+import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
+import { Button } from "./components/ui/button";
+import SettingsPage from "./components/pages/settingsPage";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./components/ui/card";
+
+function AnimatedRoutes() {
+  const location = useLocation(); // Get current location for transitions
+  const { login, register, isAuthenticated } = useKindeAuth();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="h-full w-full">
+      {!isAuthenticated && (
+        <div className="h-full w-full flex flex-col gap-4 justify-center items-center">
+          <Card>
+          <CardHeader>
+            <CardTitle>Sign In</CardTitle>
+            <CardDescription>
+              Sign in to continue.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Button onClick={register}>Register</Button>
+            <Button onClick={login}>Log In</Button>
+            </CardContent>
+          </Card>
+        </div>
+      )}
+      {isAuthenticated && (
+        <AnimatePresence mode="wait">
+          <AuroraBackground>
+            <SidebarProvider defaultOpen={false}>
+              <AppSidebar />
+              {/* Main content beside sidebar */}
+              <div className="h-full w-full flex flex-col pl-8 pr-8 gap-4">
+                {/* Sidebar toggle button */}
+                <div className="z-10 pt-4">
+                  <SidebarTrigger />
+                </div>
+                <main className="h-full w-full" id="mainContent">
+                  <Routes location={location} key={location.pathname}>
+                    <Route
+                      path="/"
+                      element={
+                        <BounceInMotionDiv className="h-full w-full">
+                          <LandingPage />
+                        </BounceInMotionDiv>
+                      }
+                    />
+                    <Route
+                      path="/dashboard"
+                      element={
+                        <BounceInMotionDiv className="h-full w-full">
+                          <PrizesAdminDashboard />
+                        </BounceInMotionDiv>
+                      }
+                    />
+                    <Route
+                      path="/draw"
+                      element={
+                        <BounceInMotionDiv className="h-full w-full">
+                          <DrawingMain />
+                        </BounceInMotionDiv>
+                      }
+                    />
+                    <Route
+                      path="/check-in"
+                      element={
+                        <BounceInMotionDiv className="h-full w-full">
+                          <CheckIn />
+                        </BounceInMotionDiv>
+                      }
+                    />
+                    <Route
+                      path="/settings"
+                      element={
+                        <BounceInMotionDiv className="h-full w-full">
+                          <SettingsPage />
+                        </BounceInMotionDiv>
+                      }
+                    />
+                  </Routes>
+                </main>
+              </div>
+            </SidebarProvider>
+          </AuroraBackground>
+        </AnimatePresence>
+      )}
+    </div>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <Router>
+      <div>
+        <AnimatedRoutes />
+      </div>
+      <Toaster closeButton richColors position="top-right" />
+    </Router>
+  );
+}
+
+export default App;
