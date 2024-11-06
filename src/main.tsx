@@ -9,8 +9,8 @@ createRoot(document.getElementById("root")!).render(
     <KindeProvider
       clientId="b707df7158804fbd818225f1698a0cef"
       domain="https://sxjtn.kinde.com"
-      redirectUri="http://localhost:5173"
-      logoutUri="http://localhost:5173"
+      redirectUri="https://seanntxj.github.io/lucky_draw_check_in_app/"
+      logoutUri="https://seanntxj.github.io/lucky_draw_check_in_app/"
     >
       <App />
     </KindeProvider>
