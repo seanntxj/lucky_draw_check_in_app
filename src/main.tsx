@@ -7,7 +7,6 @@ import { KindeProvider } from "@kinde-oss/kinde-auth-react";
 const getRedirectUriBasedOnEnv = () => { 
   const base = import.meta.env.DEV ? "http://localhost:5173/" : import.meta.env.VITE_GIT_BASE_URL;
   const git_repo_name = import.meta.env.VITE_GIT_REPO_NAME;
-  console.log(base + git_repo_name + "/")
   return base + git_repo_name + "/";
 }
 
