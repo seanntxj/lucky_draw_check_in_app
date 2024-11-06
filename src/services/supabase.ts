@@ -61,7 +61,7 @@ export const getParticipants = async (
   serviceline == "" ? "" : query.eq("serviceline", serviceline);
   registered ? query.eq("registered", true) : "";
 
-  const { data, error } = await query;
+  const { data } = await query;
 
   return data || [];
 };
