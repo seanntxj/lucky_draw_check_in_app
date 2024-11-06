@@ -3,7 +3,6 @@ import { RandomName } from "@/components/ui/name-slot-machine";
 import {
   getParticipants,
   markParticipantAsWinner,
-  getListOfServicelines,
 } from "@/services/supabase";
 import React, { useEffect, useState } from "react";
 import { Participant } from "@/schema/databaseItems";
@@ -30,7 +29,7 @@ const pickRandomWinner = (listOfParticipants: Participant[]): Participant => {
 };
 
 const DrawingMain: React.FC<Props> = () => {
-  const [transitionDuration, setTransitionDuration] = React.useState(10);
+  const [transitionDuration] = React.useState(10);
   const [currentPrizeToBeGiven, setCurrentPrizeToBeGiven] =
     React.useState<Prize>();
 

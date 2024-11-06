@@ -1,11 +1,6 @@
 import {
-  Calendar,
-  Database,
-  Home,
   HomeIcon,
   Inbox,
-  LucideSettings,
-  Search,
   Settings,
 } from "lucide-react";
 
@@ -21,7 +16,6 @@ import {
 } from "@/components/ui/sidebar";
 import ThemeToggle from "./ui/theme-toggle";
 import { Link } from "react-router-dom";
-import { url } from "inspector";
 import { CheckIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";

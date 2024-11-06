@@ -22,12 +22,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./com
 
 function AnimatedRoutes() {
   const location = useLocation(); // Get current location for transitions
-  const { login, register, isAuthenticated } = useKindeAuth();
+  const { login, isAuthenticated } = useKindeAuth();
+
+  function handleLoginClick(event: any) {
+    event.preventDefault(); // Prevent default form submission if necessary
+    login(); // Or login(loginOptions) if needed
+  }
 
   return (
     <div className="h-full w-full">
       {!isAuthenticated && (
-        <div className="h-full w-full flex flex-col gap-4 justify-center items-center">
+        <div className="h-full w-full flex justify-center items-center">
           <Card>
           <CardHeader>
             <CardTitle>Sign In</CardTitle>
@@ -36,8 +41,8 @@ function AnimatedRoutes() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <Button onClick={register}>Register</Button>
-            <Button onClick={login}>Log In</Button>
+            {/* <button onClick={register}>Register</button> */}
+            <Button onClick={handleLoginClick}>Log In</Button>
             </CardContent>
           </Card>
         </div>
