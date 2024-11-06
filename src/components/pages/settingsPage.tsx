@@ -29,7 +29,7 @@ const SettingsPage = () => {
   } = useSupabaseConfigStore();
   const { faceAPILink, setFaceAPILink } = useFaceAPIStore();
   const { category, setCategory } = useDrawingSettingsStore();
-  const [message, setMessage] = useState("");
+  const [message] = useState("");
 
   const handleSubmitDatabase = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,13 +44,13 @@ const SettingsPage = () => {
 
   const handleTestFaceAPILink = async () => {
     try {
-      const response = await fetch(faceAPILink, {
+      await fetch(faceAPILink, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ image: emptyImage }),
-      }).then((res) => toast.success("Face API link is working!"));
+      }).then(() => toast.success("Face API link is working!"));
     } catch (error) {
       toast.error(String(error));
     }

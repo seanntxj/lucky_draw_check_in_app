@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { useSupabaseConfigStore } from "./globalVariables";
+import { Participant } from "@/schema/databaseItems";
 
 /* Main supabase client */
 let supabase: any; // Initialize supabase as any
@@ -104,13 +105,13 @@ export const markParticipantAsWinner = async (
 // DO NOT RUN REPEATEDLY. VERY INEFFICIENT.
 export const getListOfServicelines = async (): Promise<string[]> => {
   console.log(supabaseParticipantsTableName)
-  const { data, error } = await getSupabaseClient()
+  const { data } = await getSupabaseClient()
     .from(supabaseParticipantsTableName)
     .select("serviceline");
 
   const groupSet = new Set<string>();
   if (data != null) {
-    data.forEach((obj) => groupSet.add(obj.serviceline));
+    data.forEach((obj: { serviceline: string; }) => groupSet.add(obj.serviceline));
     return Array.from(groupSet);
   }
 
