@@ -66,10 +66,10 @@ export const getParticipants = async (
   return data || [];
 };
 
-export const handleCheckIn = async (id: string) => {
+export const handleCheckIn = async (id: string, successfullyusedfacerecognition: boolean = true) => {
   const { data, error } = await getSupabaseClient()
     .from(supabaseParticipantsTableName)
-    .update({ registered: true, registereddatetime: new Date() })
+    .update({ registered: true, registereddatetime: new Date(), successfullyusedfacerecognition: successfullyusedfacerecognition })
     .eq("empid", id)
     .select();
 
