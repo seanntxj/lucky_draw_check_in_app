@@ -6,6 +6,13 @@ import { Input } from "@/components/ui/input";
 import { useFaceAPIStore } from "@/services/globalVariables";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader } from "../ui/card";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalTrigger,
+} from "../ui/animated-modal";
 import { bouncy } from "ldrs";
 
 interface Props {}
@@ -160,31 +167,97 @@ const CheckIn: React.FC<Props> = () => {
           </>
         );
       default: // has identified a person.
-        return (
-          <div>
-            <p>Hi, {mostLikelyToBePerson}!</p>
-            <Button onClick={() => handleCheckIn(mostLikelyToBePerson)}>
-              Check in
-            </Button>
-            <p>Not you?</p>
-            {
-              <>
-                {[
-                  ...getListOfPossiblePersonsExcept(
-                    idCounts,
-                    mostLikelyToBePerson
-                  ),
-                ].map((person) => (
-                  <Button onClick={() => handleCheckIn(person)} key={person}>
-                    {person}
-                  </Button>
-                ))}
-                {manualEntryUI()}
-              </>
-            }
-          </div>
-        );
+        return successfulFaceScanUI();
     }
+  };
+
+  const successfulFaceScanUI = () => {
+    return (
+      <>
+        <Modal>
+          <button
+            onClick={() =>
+              handleCheckIn(mostLikelyToBePerson, true, true, true)
+            }
+          >
+            <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn px-6 py-3">
+              <span className="group-hover/modal-btn:translate-x-40 text-center text-xl transition duration-500">
+                {"Hi, " + mostLikelyToBePerson}
+              </span>
+              <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+                ✅
+              </div>
+            </ModalTrigger>
+          </button>
+          <ModalBody>
+            <ModalContent>
+              <h4 className="text-lg md:text-3xl text-neutral-600 dark:text-neutral-100 font-bold text-center">
+                You've been checked in, {mostLikelyToBePerson}
+              </h4>
+              <h3 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mt-2">
+                Enjoy your time and{" "}
+                <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
+                  good luck! 🌟
+                </span>
+              </h3>
+            </ModalContent>
+            <ModalFooter className="gap-4">
+              <Button
+                onClick={() => handleCheckIn(mostLikelyToBePerson, null, false)}
+                variant="outline"
+              >
+                Wait, this isn't me!
+              </Button>
+            </ModalFooter>
+          </ModalBody>
+        </Modal>
+        <Modal>
+          <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
+            <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
+              {"Not you?"}
+            </span>
+            <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
+              🔄
+            </div>
+          </ModalTrigger>
+          <ModalBody>
+            <ModalContent>
+              {getListOfPossiblePersonsExcept(idCounts, mostLikelyToBePerson)
+                .length !== 0 && (
+                <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-4">
+                  Are you perhaps...
+                </h4>
+              )}
+              {
+                <>
+                  {[
+                    ...getListOfPossiblePersonsExcept(
+                      idCounts,
+                      mostLikelyToBePerson
+                    ),
+                  ].map((person) => (
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleCheckIn(person)}
+                      key={person}
+                    >
+                      {person}
+                    </Button>
+                  ))}
+                </>
+              }
+              <h3 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mt-2">
+                Still not you?
+              </h3>
+              {manualEntryUI()}
+            </ModalContent>
+            {/* <ModalFooter className="gap-4">
+            </ModalFooter> */}
+
+          </ModalBody>
+        </Modal>
+      </>
+    );
   };
 
   return (
@@ -202,7 +275,7 @@ const CheckIn: React.FC<Props> = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
               <div className="px-8 py-2 bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-                Begin Check In
+                Begin Facial Recognition
               </div>
             </button>
           )}

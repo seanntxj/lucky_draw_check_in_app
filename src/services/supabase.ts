@@ -1,6 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { useSupabaseConfigStore } from "./globalVariables";
 import { Participant } from "@/schema/databaseItems";
+import { toast } from "sonner";
 
 /* Main supabase client */
 let supabase: any; // Initialize supabase as any
@@ -66,16 +67,26 @@ export const getParticipants = async (
   return data || [];
 };
 
-export const handleCheckIn = async (id: string, successfullyusedfacerecognition: boolean = true) => {
+export const handleCheckIn = async (id: string, successfullyusedfacerecognition: boolean | null = true, status: boolean = true, silentAccept: boolean = false) => {
   const { data, error } = await getSupabaseClient()
     .from(supabaseParticipantsTableName)
-    .update({ registered: true, registereddatetime: new Date(), successfullyusedfacerecognition: successfullyusedfacerecognition })
+    .update({ registered: status, registereddatetime: new Date(), successfullyusedfacerecognition: successfullyusedfacerecognition })
     .eq("empid", id)
     .select();
 
   if (error) {
+    toast.error("Error while checking in: " + error);
     throw error;
   }
+
+  if (status === false) {
+    toast.success("Checked out, you may close the popup.")
+  }
+
+  if (!silentAccept && status === true) {
+    toast.success("Checked in successfully.")
+  }
+
   return data;
 };
 
