@@ -6,85 +6,28 @@ import { Input } from "@/components/ui/input";
 import { useFaceAPIStore } from "@/services/globalVariables";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader } from "../ui/card";
+import { bouncy } from "ldrs";
 
 interface Props {}
 
 const ACCURACY = 3;
 const RETRY_MAX = 15;
 
-const delay = (ms: number) => {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-};
-
 const CheckIn: React.FC<Props> = () => {
   const { faceAPILink } = useFaceAPIStore();
   const [ids, setIds] = useState<string[]>([]);
+  const [idCounts, setIdCounts] = useState<Record<string, number>>({});
+
   const webcamRef = useRef<Webcam>(null);
-  // const [intervalId, setIntervalId] = useState<NodeJS.Timeout | null>(null);
-  const [idCounts, setIdCounts] = useState<Record<string, number>>({
-    _resting: ACCURACY,
-  }); // defaulted to something so that it doesn't start sending requests on startup
-  const [mostLikelyToBePerson, setMostLikelyToBePerson] =
-    useState<string>("_resting");
-  const [manualEntryUITextBox, setManualEntryUITextBox] = useState<string>("");
+  const [checkInState, setCheckInState] = useState<
+    "resting" | "loading" | "failed" | "success"
+  >("resting");
+  const [mostLikelyToBePerson, setMostLikelyToBePerson] = useState<string>("");
   const [retryCount, setRetryCount] = useState<number>(0);
+  const [manualEntryUITextBox, setManualEntryUITextBox] = useState<string>("");
+  bouncy.register();
 
-  // useEffect(() => {
-  //   if (serverPort) {
-  //     const newIntervalId = setInterval(capture, 2500);
-  //     setIntervalId(newIntervalId);
-  //     return () => clearInterval(newIntervalId);
-  //   }
-  //   return () => {
-  //     if (intervalId) {
-  //       clearInterval(intervalId);
-  //     }
-  //   };
-  // }, [serverPort]);
-
-  // const captureFrames = async () => {
-  //   for (let i = 0; i < 10; i++) {
-  //     await delay(750);
-  //     await capture();
-  //   }
-  // };
-
-  // Main face scanning loop
-  // Whenever "beginFacialRecognition" is used, "ids" would change, prompting this useEffect loop to start
-  // The loop checks if any Id has been in the top position 5 times or more, stops the loop if true
-  // If not it'll call capture again after a 750ms delay, sendImage will inevitably "set" ids again causing this loop to repeat
-  useEffect(() => {
-    if (ids.length > 0) {
-      idCounts[ids[0]] = idCounts[ids[0]] ? idCounts[ids[0]] + 1 : 1;
-    }
-    const checkEachIdLoop = async () => {
-      let thresholdMet = false;
-      for (const key in idCounts) {
-        if (idCounts[key] >= ACCURACY) {
-          console.log(`Person is likely ${key}`);
-          setMostLikelyToBePerson(key);
-          thresholdMet = true;
-        }
-      }
-      if (!thresholdMet && retryCount < RETRY_MAX) {
-        setRetryCount(retryCount + 1);
-        await delay(500);
-        await capture();
-      } else if (retryCount >= RETRY_MAX) {
-        setMostLikelyToBePerson("_unidentifiable");
-      }
-    };
-    checkEachIdLoop();
-  }, [ids]);
-
-  const beginFacialRecognition = () => {
-    setIdCounts({});
-    setMostLikelyToBePerson("_loading");
-    setRetryCount(0);
-    setManualEntryUITextBox("");
-    capture();
-  };
-
+  // Captures an image, sends it to the server, and then returns the response into ids, ordered from most likely to least likely persons ids
   const capture = async (): Promise<string[] | null> => {
     const imageSrc = webcamRef.current?.getScreenshot();
     if (imageSrc) {
@@ -110,6 +53,7 @@ const CheckIn: React.FC<Props> = () => {
     return null;
   };
 
+  // Sends the image to the server and returns the response
   const sendImage = async (imageSrc: string): Promise<string[] | null> => {
     try {
       const response = await fetch(faceAPILink, {
@@ -121,7 +65,7 @@ const CheckIn: React.FC<Props> = () => {
       });
       const data = await response.json();
       setIds(data.potential_ids);
-      console.log("API Response:", data);
+      // console.log("API Response:", data);
       return data.potential_ids;
     } catch (error) {
       console.error("Error sending image:", error);
@@ -130,10 +74,49 @@ const CheckIn: React.FC<Props> = () => {
     }
   };
 
+  // Begin the loop for facial recognition
+  const beginFacialRecognition = async () => {
+    setIdCounts({});
+    setRetryCount(0);
+    setManualEntryUITextBox("");
+    setCheckInState("loading");
+    setMostLikelyToBePerson("");
+    capture();
+  };
+
+  // Triggered when the user uses beginFacialRecognition as ids will be updated from capture();
+  useEffect(() => {
+    // If the server has returned some ids
+    // Take the first ids and increment its count by one
+    if (ids.length > 0) {
+      idCounts[ids[0]] = idCounts[ids[0]] ? idCounts[ids[0]] + 1 : 1;
+    }
+    // Check if any Ids have a count more than the threshold, ACCURACY
+    // If they do, end the loop and show the most likely person
+    // If not, increment the retry count and call capture() again, which would update Ids, which would in turn trigger this useEffect again
+    const doAsyncStuff = async () => {
+      for (const key in idCounts) {
+        if (idCounts[key] >= ACCURACY) {
+          setMostLikelyToBePerson(key);
+          setCheckInState("success");
+          return;
+        }
+      }
+      if (retryCount < RETRY_MAX) {
+        setRetryCount(retryCount + 1);
+      } else if (retryCount >= RETRY_MAX) {
+        setCheckInState("failed");
+        return;
+      }
+      capture();
+    };
+    doAsyncStuff();
+  }, [ids]);
+
   const manualEntryUI = () => {
     return (
       <div className="flex flex-col gap-2">
-        <p>Please enter your staff ID manually or request for assistance:</p>
+        <p>Please enter your staff ID manually or request for assistance</p>
         <div className="flex flex-row gap-2">
           <Input
             type="text"
@@ -141,7 +124,7 @@ const CheckIn: React.FC<Props> = () => {
             onChange={(e) => setManualEntryUITextBox(e.target.value)}
             placeholder="Enter id"
           />
-          <Button onClick={() => handleCheckIn(manualEntryUITextBox)}>
+          <Button onClick={() => handleCheckIn(manualEntryUITextBox, false)}>
             Check in
           </Button>
         </div>
@@ -164,19 +147,19 @@ const CheckIn: React.FC<Props> = () => {
   };
 
   const personSelection = () => {
-    switch (mostLikelyToBePerson) {
-      case "_resting":
+    switch (checkInState) {
+      case "resting":
         return;
-      case "_loading":
-        return <p>Loading</p>;
-      case "_unidentifiable":
+      case "loading":
+        return <l-bouncy size="45" speed="1.75" color="gray" />;
+      case "failed":
         return (
           <>
             <p>Unfortunately, I can't identify you.</p>
             {manualEntryUI()}
           </>
         );
-      default:
+      default: // has identified a person.
         return (
           <div>
             <p>Hi, {mostLikelyToBePerson}!</p>
@@ -212,7 +195,7 @@ const CheckIn: React.FC<Props> = () => {
           <div className="rounded-lg overflow-hidden w-[400px] h-[300px]">
             <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
           </div>
-          {mostLikelyToBePerson !== "_loading" && (
+          {checkInState !== "loading" && (
             <button
               onClick={beginFacialRecognition}
               className="p-[3px] relative"
