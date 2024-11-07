@@ -65,6 +65,10 @@ const DrawingMain: React.FC<Props> = () => {
 
     // Get a list of valid participants
     const participants = await getParticipants({ category: category });
+    if (participants.length === 0) {
+      toast.error(`Can't get any participants. Ensure there's at least one participant that has registered.`)
+      return;
+    }
 
     // Choose a winner from the list of valid participants
     const chosenWinner = pickRandomWinner(participants);
