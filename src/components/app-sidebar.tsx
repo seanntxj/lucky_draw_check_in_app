@@ -14,10 +14,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import ThemeToggle from "./ui/theme-toggle";
+import ThemeToggle from "@/components/ui/theme-toggle";
 import { Link } from "react-router-dom";
 import { CheckIcon } from "@radix-ui/react-icons";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
 // Menu items.
