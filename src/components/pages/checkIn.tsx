@@ -1,4 +1,4 @@
-import { getNameFromId, handleCheckIn } from "@/services/supabase";
+import { handleCheckIn } from "@/services/supabase";
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@/components/ui/button";
@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useFaceAPIStore } from "@/services/globalVariables";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader } from "../ui/card";
+import { FlipWords } from "../ui/flip-words";
 import {
   Modal,
   ModalBody,
@@ -14,18 +15,19 @@ import {
   ModalTrigger,
 } from "../ui/animated-modal";
 import { bouncy } from "ldrs";
+import { motion } from "framer-motion";
 
 interface Props {}
 
 const ACCURACY = 3;
-const RETRY_MAX = 15;
+const RETRY_MAX = 20;
+
 
 const CheckIn: React.FC<Props> = () => {
   const { faceAPILink } = useFaceAPIStore();
   const [ids, setIds] = useState<string[]>([]);
   const [idCounts, setIdCounts] = useState<Record<string, number>>({});
-  const [nameMapping, setNameMapping] = useState<Record<string, string>>({});
-
+  
   const webcamRef = useRef<Webcam>(null);
   const [checkInState, setCheckInState] = useState<
     "resting" | "loading" | "failed" | "success"
@@ -121,31 +123,6 @@ const CheckIn: React.FC<Props> = () => {
     doAsyncStuff();
   }, [ids]);
 
-  // Get names from ids
-  useEffect(() => {
-    const doAsyncStuff = async () => {
-      const additionalNames: Record<string, string> = {};
-      for (const key in idCounts) {
-        if (nameMapping[key] !== undefined) {
-          continue;
-        }
-
-        await getNameFromId(key)
-          .then((response) => {
-            additionalNames[key] = response;
-          })
-          .catch((err) => {
-            console.error("Error in getNameFromId", err);
-          });
-      }
-      setNameMapping({
-        ...nameMapping,
-        ...additionalNames,
-      });
-    };
-    doAsyncStuff();
-  }, [ids]);
-
   const manualEntryUI = () => {
     return (
       <div className="flex flex-col gap-2">
@@ -182,15 +159,66 @@ const CheckIn: React.FC<Props> = () => {
   const personSelection = () => {
     switch (checkInState) {
       case "resting":
-        return;
+        return (
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(5px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5, // Adjust duration as needed
+              ease: "easeInOut", // Adjust easing function as needed
+            }}
+          >
+            <button
+              onClick={beginFacialRecognition}
+              className="p-[3px] relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+              <div className="px-8 py-2 bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+                Begin Facial Recognition
+              </div>
+            </button>{" "}
+          </motion.div>
+        );
       case "loading":
-        return <l-bouncy size="45" speed="1.75" color="gray" />;
+        return (
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(5px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5, // Adjust duration as needed
+              ease: "easeInOut", // Adjust easing function as needed
+            }}
+          >
+            <FlipWords
+              words={[
+                "Ready?",
+                "Smile!",
+                "Ensure you are facing the camera straight",
+                "Stand arms length away from the camera",
+                "This is taking longer than usual",
+                "Its not you, its me!",
+                "This thing hasn't timed out yet?",
+                "Man I'm running out of things to say",
+                "So urm, lovely weather we're having today.. or night hah! Get it? Because it's a night event?",
+                "This is getting awkward...",
+                "Okay, something is definitely wrong here if you see this. Please request help. Thank you!",
+              ]}
+            />
+          </motion.div>
+        );
       case "failed":
         return (
-          <>
+          <motion.div
+            initial={{ opacity: 0, filter: "blur(5px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.5, // Adjust duration as needed
+              ease: "easeInOut", // Adjust easing function as needed
+            }}
+          >
             <p>Unfortunately, I can't identify you.</p>
             {manualEntryUI()}
-          </>
+          </motion.div>
         );
       default: // has identified a person.
         return successfulFaceScanUI();
@@ -199,16 +227,17 @@ const CheckIn: React.FC<Props> = () => {
 
   const successfulFaceScanUI = () => {
     return (
-      <>
+      <div className="flex flex-col gap-4">
         <Modal>
           <button
             onClick={() =>
-              handleCheckIn(mostLikelyToBePerson, true, true, true)
+              handleCheckIn(mostLikelyToBePerson.split("+")[0], true, true, true)
             }
           >
             <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn px-6 py-3">
               <span className="group-hover/modal-btn:translate-x-40 text-center text-xl transition duration-500">
-                {"Hi, " + nameMapping[mostLikelyToBePerson] || mostLikelyToBePerson}
+                {"Hi, " + mostLikelyToBePerson.split("+")[1] ||
+                  mostLikelyToBePerson}
               </span>
               <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
                 ✅
@@ -218,7 +247,7 @@ const CheckIn: React.FC<Props> = () => {
           <ModalBody>
             <ModalContent>
               <h4 className="text-lg md:text-3xl text-neutral-600 dark:text-neutral-100 font-bold text-center">
-                You've been checked in, {mostLikelyToBePerson}
+                You've been checked in, {mostLikelyToBePerson.split("+")[1]}
               </h4>
               <h3 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mt-2">
                 Enjoy your time and{" "}
@@ -229,7 +258,7 @@ const CheckIn: React.FC<Props> = () => {
             </ModalContent>
             <ModalFooter className="gap-4">
               <Button
-                onClick={() => handleCheckIn(mostLikelyToBePerson, null, false)}
+                onClick={() => handleCheckIn(mostLikelyToBePerson.split("+")[0], null, false)}
                 variant="outline"
               >
                 Wait, this isn't me!
@@ -264,10 +293,10 @@ const CheckIn: React.FC<Props> = () => {
                   ].map((person) => (
                     <Button
                       variant="secondary"
-                      onClick={() => handleCheckIn(person)}
+                      onClick={() => handleCheckIn(person.split("+")[0])}
                       key={person}
                     >
-                      {person}
+                      {person.split("+")[1]}
                     </Button>
                   ))}
                 </>
@@ -281,7 +310,7 @@ const CheckIn: React.FC<Props> = () => {
             </ModalFooter> */}
           </ModalBody>
         </Modal>
-      </>
+      </div>
     );
   };
 
@@ -290,20 +319,9 @@ const CheckIn: React.FC<Props> = () => {
       <Card>
         <CardHeader />
         <CardContent className="flex flex-col items-center justify-center gap-4">
-          <div className="rounded-lg overflow-hidden w-[400px] h-[300px]">
+          <div className="rounded-lg overflow-hidden  z-50">
             <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
           </div>
-          {checkInState !== "loading" && (
-            <button
-              onClick={beginFacialRecognition}
-              className="p-[3px] relative"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-              <div className="px-8 py-2 bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
-                Begin Facial Recognition
-              </div>
-            </button>
-          )}
           {personSelection()}
         </CardContent>
       </Card>

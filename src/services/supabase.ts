@@ -81,7 +81,7 @@ export const getParticipants = async (
 export const handleCheckIn = async (id: string, successfullyusedfacerecognition: boolean | null = true, status: boolean = true, silentAccept: boolean = false) => {
   const { data, error } = await getSupabaseClient()
     .from(supabaseParticipantsTableName)
-    .update({ registered: status, registereddatetime: new Date(), successfullyusedfacerecognition: successfullyusedfacerecognition })
+    .update({ registered: status, registereddatetime: status ? new Date() : null, successfullyusedfacerecognition: successfullyusedfacerecognition })
     .eq("empid", id)
     .select();
 
@@ -98,6 +98,7 @@ export const handleCheckIn = async (id: string, successfullyusedfacerecognition:
     toast.success("Checked in successfully.")
   }
 
+  console.log(error);
   return data;
 };
 
