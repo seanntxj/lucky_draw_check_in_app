@@ -41,6 +41,17 @@ export interface GetParticipantsOptions {
   serviceline?: string;
 }
 
+export const getNameFromId = async (id: string) => {
+  try {
+    let res = await getSupabaseClient().from(supabaseParticipantsTableName).select("*").eq("empid", id);
+    console.log(res)
+    return res.data[0].name;
+  } catch (error) {
+    console.error(error)
+    toast.error("Cannot get name for employee ID: " + id)
+  }
+} 
+
 export const getParticipants = async (
   options: GetParticipantsOptions = {}
 ): Promise<Participant[]> => {
