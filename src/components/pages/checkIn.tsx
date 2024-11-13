@@ -1,4 +1,4 @@
-import { handleCheckIn } from "@/services/supabase";
+import { getNameFromId, handleCheckIn } from "@/services/supabase";
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@/components/ui/button";
@@ -24,6 +24,7 @@ const CheckIn: React.FC<Props> = () => {
   const { faceAPILink } = useFaceAPIStore();
   const [ids, setIds] = useState<string[]>([]);
   const [idCounts, setIdCounts] = useState<Record<string, number>>({});
+  const [nameMapping, setNameMapping] = useState<Record<string, string>>({});
 
   const webcamRef = useRef<Webcam>(null);
   const [checkInState, setCheckInState] = useState<
@@ -120,6 +121,31 @@ const CheckIn: React.FC<Props> = () => {
     doAsyncStuff();
   }, [ids]);
 
+  // Get names from ids
+  useEffect(() => {
+    const doAsyncStuff = async () => {
+      const additionalNames: Record<string, string> = {};
+      for (const key in idCounts) {
+        if (nameMapping[key] !== undefined) {
+          continue;
+        }
+
+        await getNameFromId(key)
+          .then((response) => {
+            additionalNames[key] = response;
+          })
+          .catch((err) => {
+            console.error("Error in getNameFromId", err);
+          });
+      }
+      setNameMapping({
+        ...nameMapping,
+        ...additionalNames,
+      });
+    };
+    doAsyncStuff();
+  }, [ids]);
+
   const manualEntryUI = () => {
     return (
       <div className="flex flex-col gap-2">
@@ -182,7 +208,7 @@ const CheckIn: React.FC<Props> = () => {
           >
             <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn px-6 py-3">
               <span className="group-hover/modal-btn:translate-x-40 text-center text-xl transition duration-500">
-                {"Hi, " + mostLikelyToBePerson}
+                {"Hi, " + nameMapping[mostLikelyToBePerson] || mostLikelyToBePerson}
               </span>
               <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
                 ✅
@@ -253,7 +279,6 @@ const CheckIn: React.FC<Props> = () => {
             </ModalContent>
             {/* <ModalFooter className="gap-4">
             </ModalFooter> */}
-
           </ModalBody>
         </Modal>
       </>

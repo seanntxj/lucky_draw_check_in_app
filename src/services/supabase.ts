@@ -47,8 +47,8 @@ export const getNameFromId = async (id: string) => {
     console.log(res)
     return res.data[0].name;
   } catch (error) {
-    console.error(error)
     toast.error("Cannot get name for employee ID: " + id)
+    throw error;
   }
 } 
 
