@@ -46,14 +46,13 @@ const CheckIn: React.FC<Props> = () => {
         if (ctx) {
           ctx.drawImage(img, 0, 0, 640, 480);
           const resizedImageSrc = canvas.toDataURL("image/jpeg");
-          console.log("resized image src:", resizedImageSrc);
           sendImage(resizedImageSrc);
         } else {
           console.error("Could not get 2D rendering context");
         }
       };
     } else {
-      console.log("Webcam not available or not ready yet.");
+      console.error("Webcam not available or not ready yet.");
     }
     return null;
   };

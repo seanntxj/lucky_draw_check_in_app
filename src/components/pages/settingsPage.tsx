@@ -33,7 +33,6 @@ const SettingsPage = () => {
 
   const handleSubmitDatabase = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(supabaseParticipantsTableName);
     try {
       await initializeSupabase(supabaseUrl, supabaseKey);
       toast.success("Supabase initialized successfully!");

@@ -30,17 +30,14 @@ export function CardWithForm() {
   const navigate = useNavigate();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event);
     const selectedFile = event.target.files?.[0] || null; // Safely access the first file
     selectedFile !== null ? setFile(selectedFile) : ""; // Update state with the selected file
   };
 
   const handleOnClickUseCSV = () => {
     if (file) {
-      console.log(file);
       Papa.parse(file, {
         complete: function (results: { data: any }) {
-          console.log("Finished:", results.data);
           const formattedPrizes = results.data
             .slice(1) // Start from the second object
             .filter((item: string | any[]) => item.length > 1) // Exclude empty or null rows
