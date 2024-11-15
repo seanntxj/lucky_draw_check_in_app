@@ -19,6 +19,7 @@ import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import { Button } from "./components/ui/button";
 import SettingsPage from "./components/pages/settingsPage";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./components/ui/card";
+import ManualCheckInPage from "./components/pages/manualCheckIn";
 
 function AnimatedRoutes() {
   const location = useLocation(); // Get current location for transitions
@@ -97,6 +98,14 @@ function AnimatedRoutes() {
                       element={
                         <BounceInMotionDiv className="h-full w-full">
                           <SettingsPage />
+                        </BounceInMotionDiv>
+                      }
+                    />
+                    <Route
+                      path="/manual-check-in"
+                      element={
+                        <BounceInMotionDiv className="h-full w-full">
+                          <ManualCheckInPage />
                         </BounceInMotionDiv>
                       }
                     />

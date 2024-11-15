@@ -123,25 +123,6 @@ const CheckIn: React.FC<Props> = () => {
     handleCheckIn(personId ? personId : mostLikelyToBePerson.split('+')[0], true, true, false).then(() => setCheckInState('resting'))
   }
 
-  const manualEntryUI = () => {
-    return (
-      <div className="flex flex-col gap-2">
-        <p>Please enter your staff ID manually or request for assistance</p>
-        <div className="flex flex-row gap-2">
-          <Input
-            type="text"
-            value={manualEntryUITextBox}
-            onChange={(e) => setManualEntryUITextBox(e.target.value)}
-            placeholder="Enter id"
-          />
-          <Button onClick={() => handleCheckIn(manualEntryUITextBox, false)}>
-            Check in
-          </Button>
-        </div>
-      </div>
-    );
-  };
-
   const getListOfPossiblePersonsExcept = (
     idCounts: Record<string, number>,
     mostLikelyToBePerson: string

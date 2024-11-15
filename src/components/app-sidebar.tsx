@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/sidebar";
 import ThemeToggle from "@/components/ui/theme-toggle";
 import { Link } from "react-router-dom";
-import { CheckIcon } from "@radix-ui/react-icons";
+import { CheckboxIcon, CheckIcon } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/button";
 import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
@@ -33,9 +33,14 @@ const items = [
     icon: Inbox,
   },
   {
-    title: "Check In", 
+    title: "Automatic Check In", 
     url: "/check-in",
     icon: CheckIcon
+  },
+  {
+    title: "Manual Check In", 
+    url: "/manual-check-in", 
+    icon: CheckboxIcon
   },
   {
     title: "Settings", 

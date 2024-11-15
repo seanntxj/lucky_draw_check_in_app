@@ -91,7 +91,7 @@ export const handleCheckIn = async (id: string, successfullyusedfacerecognition:
   }
 
   if (status === false) {
-    toast.success("Checked out, you may close the popup.")
+    toast.success("Checked out successfully.")
   }
 
   if (!silentAccept && status === true) {
