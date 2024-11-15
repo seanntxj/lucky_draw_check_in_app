@@ -7,27 +7,23 @@ import { useFaceAPIStore } from "@/services/globalVariables";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { FlipWords } from "../ui/flip-words";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalTrigger,
-} from "../ui/animated-modal";
-import { bouncy } from "ldrs";
 import { motion } from "framer-motion";
+import { SpringModal } from "../ui/spring-modal";
+import BounceInMotionDiv from "../ui/bounce-in-motion-div";
+import { ArrowLeftIcon } from "lucide-react";
 
 interface Props {}
 
 const ACCURACY = 3;
 const RETRY_MAX = 20;
 
-
 const CheckIn: React.FC<Props> = () => {
   const { faceAPILink } = useFaceAPIStore();
   const [ids, setIds] = useState<string[]>([]);
   const [idCounts, setIdCounts] = useState<Record<string, number>>({});
-  
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(true);
+  const [showAlternativePeople, setShowAlternativePeople] = useState(false);
+
   const webcamRef = useRef<Webcam>(null);
   const [checkInState, setCheckInState] = useState<
     "resting" | "loading" | "failed" | "success"
@@ -35,7 +31,6 @@ const CheckIn: React.FC<Props> = () => {
   const [mostLikelyToBePerson, setMostLikelyToBePerson] = useState<string>("");
   const [retryCount, setRetryCount] = useState<number>(0);
   const [manualEntryUITextBox, setManualEntryUITextBox] = useState<string>("");
-  bouncy.register();
 
   // Captures an image, sends it to the server, and then returns the response into ids, ordered from most likely to least likely persons ids
   const capture = async (): Promise<string[] | null> => {
@@ -91,6 +86,7 @@ const CheckIn: React.FC<Props> = () => {
     setManualEntryUITextBox("");
     setCheckInState("loading");
     setMostLikelyToBePerson("");
+    setShowAlternativePeople(false);
     capture();
   };
 
@@ -199,9 +195,9 @@ const CheckIn: React.FC<Props> = () => {
                 "Its not you, its me!",
                 "This thing hasn't timed out yet?",
                 "Man I'm running out of things to say",
-                "So urm, lovely weather we're having today.. or night hah! Get it? Because it's a night event?",
+                "So urm, lovely weather we're having today..",
+                "..or night hah! Get it? Because it's a night event?",
                 "This is getting awkward...",
-                "Okay, something is definitely wrong here if you see this. Please request help. Thank you!",
               ]}
             />
           </motion.div>
@@ -228,88 +224,94 @@ const CheckIn: React.FC<Props> = () => {
   const successfulFaceScanUI = () => {
     return (
       <div className="flex flex-col gap-4">
-        <Modal>
-          <button
-            onClick={() =>
-              handleCheckIn(mostLikelyToBePerson.split("+")[0], true, true, true)
-            }
-          >
-            <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn px-6 py-3">
-              <span className="group-hover/modal-btn:translate-x-40 text-center text-xl transition duration-500">
-                {"Hi, " + mostLikelyToBePerson.split("+")[1] ||
-                  mostLikelyToBePerson}
-              </span>
-              <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
-                ✅
-              </div>
-            </ModalTrigger>
-          </button>
-          <ModalBody>
-            <ModalContent>
-              <h4 className="text-lg md:text-3xl text-neutral-600 dark:text-neutral-100 font-bold text-center">
-                You've been checked in, {mostLikelyToBePerson.split("+")[1]}
-              </h4>
-              <h3 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mt-2">
-                Enjoy your time and{" "}
-                <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
-                  good luck! 🌟
-                </span>
-              </h3>
-            </ModalContent>
-            <ModalFooter className="gap-4">
-              <Button
-                onClick={() => handleCheckIn(mostLikelyToBePerson.split("+")[0], null, false)}
-                variant="outline"
-              >
-                Wait, this isn't me!
-              </Button>
-            </ModalFooter>
-          </ModalBody>
-        </Modal>
-        <Modal>
-          <ModalTrigger className="bg-black dark:bg-white dark:text-black text-white flex justify-center group/modal-btn">
-            <span className="group-hover/modal-btn:translate-x-40 text-center transition duration-500">
-              {"Not you?"}
-            </span>
-            <div className="-translate-x-40 group-hover/modal-btn:translate-x-0 flex items-center justify-center absolute inset-0 transition duration-500 text-white z-20">
-              🔄
-            </div>
-          </ModalTrigger>
-          <ModalBody>
-            <ModalContent>
-              {getListOfPossiblePersonsExcept(idCounts, mostLikelyToBePerson)
-                .length !== 0 && (
-                <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-4">
-                  Are you perhaps...
-                </h4>
-              )}
-              {
-                <>
-                  {[
-                    ...getListOfPossiblePersonsExcept(
-                      idCounts,
-                      mostLikelyToBePerson
-                    ),
-                  ].map((person) => (
-                    <Button
-                      variant="secondary"
-                      onClick={() => handleCheckIn(person.split("+")[0])}
-                      key={person}
-                    >
-                      {person.split("+")[1]}
-                    </Button>
-                  ))}
-                </>
-              }
-              <h3 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mt-2">
-                Still not you?
-              </h3>
-              {manualEntryUI()}
-            </ModalContent>
-            {/* <ModalFooter className="gap-4">
-            </ModalFooter> */}
-          </ModalBody>
-        </Modal>
+        <SpringModal
+          isOpen={isSuccessModalOpen}
+          setIsOpen={setIsSuccessModalOpen}
+        >
+          <>
+            {!showAlternativePeople && (
+              <BounceInMotionDiv className="flex flex-col gap-4">
+                <div>
+                  <h4 className="text-lg md:text-3xl text-neutral-600 dark:text-neutral-100 font-bold text-center">
+                    Hi, {mostLikelyToBePerson.split("+")[1]}
+                  </h4>
+                  <h3 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mt-2">
+                    Enjoy your time and{" "}
+                    <span className="px-1 py-0.5 rounded-md bg-opacity-50 bg-gray-300 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
+                      good luck! 🌟
+                    </span>
+                  </h3>
+                </div>
+                <div className="flex justify-center gap-1 pt-10">
+                  <Button
+                    onClick={() => setShowAlternativePeople(true)}
+                    variant="secondary"
+                    className="px-10 py-5"
+                  >
+                    Not you?
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      handleCheckIn(
+                        mostLikelyToBePerson.split("+")[0],
+                        true,
+                        true,
+                        false
+                      );
+
+                      setCheckInState("resting");
+                    }}
+                    className="px-10 py-5"
+                  >
+                    Check in
+                  </Button>
+                </div>
+              </BounceInMotionDiv>
+            )}
+            {showAlternativePeople && (
+              <BounceInMotionDiv className="flex flex-col gap-4">
+                <div>
+                  <Button
+                    variant={"secondary"}
+                    onClick={() => setShowAlternativePeople(false)}
+                  >
+                    <ArrowLeftIcon />
+                  </Button>
+                </div>
+                <div className="flex flex-col gap-4">
+                  {getListOfPossiblePersonsExcept(
+                    idCounts,
+                    mostLikelyToBePerson
+                  ).length !== 0 && (
+                    <div >
+                      <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-4">
+                        Are you perhaps...
+                      </h4>
+                      <div className="flex justify-center gap-4">
+                      {[
+                        ...getListOfPossiblePersonsExcept(
+                          idCounts,
+                          mostLikelyToBePerson
+                        ),
+                      ].map((person) => (
+                        <Button
+                          onClick={() => handleCheckIn(person.split("+")[0])}
+                          key={person}
+                        >
+                          {person.split("+")[1]}
+                        </Button>
+                      ))}
+                        </div>
+                    </div>
+                  )}
+                  <Button onClick={beginFacialRecognition} variant={"outline"} className="text-black dark:text-white">
+                    Retry Face Scan
+                  </Button>
+                </div>
+              </BounceInMotionDiv>
+            )}
+          </>
+        </SpringModal>
       </div>
     );
   };

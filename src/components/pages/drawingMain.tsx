@@ -189,7 +189,7 @@ const DrawingMain: React.FC<Props> = () => {
       </div>
       {/* First page: Show the item to be won */}
       {showItemToBeWon && (
-        <BounceInMotionDiv className="h-full w-full flex items-center justify-center">
+        <BounceInMotionDiv className="h-full w-full">
           <LuckyDrawItemBigDisplay
             imgLink={
               currentPrizeToBeGiven ? currentPrizeToBeGiven.imageLink : ""
@@ -275,6 +275,7 @@ const DrawingMain: React.FC<Props> = () => {
             onClick={() => {
               setShowPerson(false);
               setShowItemToBeWon(true);
+              setShowSlotMachineWinner(false)
             }}
           >
             <ChevronRightIcon />

@@ -13,7 +13,7 @@ const LuckyDrawItemBigDisplay: React.FC<LuckyDrawItemBigDisplayProps> = (
   const { imgLink, title, desc } = props;
   return (
     <Card
-      className="overflow-hidden h-full w-full flex items-center justify-center"
+      className="overflow-hidden flex h-[90vh]"
       title="Lucky Draw"
     >
       <div className="h-full w-full grid md:grid-cols-2 overflow-hidden">

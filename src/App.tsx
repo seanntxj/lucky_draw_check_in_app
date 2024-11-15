@@ -48,8 +48,8 @@ function AnimatedRoutes() {
         </div>
       )}
       {isAuthenticated && (
-        <AnimatePresence mode="wait">
-          <AuroraBackground>
+        <AnimatePresence mode="wait" >
+          {/* <AuroraBackground> */}
             <SidebarProvider defaultOpen={false}>
               <AppSidebar />
               {/* Main content beside sidebar */}
@@ -104,7 +104,7 @@ function AnimatedRoutes() {
                 </main>
               </div>
             </SidebarProvider>
-          </AuroraBackground>
+          {/* </AuroraBackground> */}
         </AnimatePresence>
       )}
     </div>
