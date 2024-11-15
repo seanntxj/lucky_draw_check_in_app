@@ -251,15 +251,17 @@ const CheckIn: React.FC<Props> = () => {
                     Not you?
                   </Button>
                   <Button
-                    onClick={() => {
-                      handleCheckIn(
+                    onClick={async () => {
+                      const res = await handleCheckIn(
                         mostLikelyToBePerson.split("+")[0],
                         true,
                         true,
                         false
                       );
 
-                      setCheckInState("resting");
+                      if (res) {
+                        setCheckInState("resting");
+                      }
                     }}
                     className="px-10 py-5"
                   >

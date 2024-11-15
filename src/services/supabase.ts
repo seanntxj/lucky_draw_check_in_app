@@ -86,7 +86,7 @@ export const handleCheckIn = async (id: string, successfullyusedfacerecognition:
     .select();
 
   if (error) {
-    toast.error("Error while checking in: " + error);
+    toast.error("Error while checking in: " + error.message);
     throw error;
   }
 
