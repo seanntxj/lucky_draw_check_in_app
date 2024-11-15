@@ -119,6 +119,10 @@ const CheckIn: React.FC<Props> = () => {
     doAsyncStuff();
   }, [ids]);
 
+  const handleCheckInButtonOnClick = async (personId: string | undefined = undefined): Promise<void> => {
+    handleCheckIn(personId ? personId : mostLikelyToBePerson.split('+')[0], true, true, false).then(() => setCheckInState('resting'))
+  }
+
   const manualEntryUI = () => {
     return (
       <div className="flex flex-col gap-2">
@@ -211,9 +215,18 @@ const CheckIn: React.FC<Props> = () => {
               duration: 0.5, // Adjust duration as needed
               ease: "easeInOut", // Adjust easing function as needed
             }}
+            className="flex flex-col gap-4"
           >
-            <p>Unfortunately, I can't identify you.</p>
-            {manualEntryUI()}
+            <p className="text-lg md:text-3xl text-neutral-600 dark:text-neutral-100 font-bold text-center">Unfortunately, I can't identify you.</p>
+            <button
+              onClick={beginFacialRecognition}
+              className="p-[3px] relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+              <div className="px-8 py-2 bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">
+                Try Facial Recognition Again
+              </div>
+            </button>
           </motion.div>
         );
       default: // has identified a person.
@@ -251,18 +264,7 @@ const CheckIn: React.FC<Props> = () => {
                     Not you?
                   </Button>
                   <Button
-                    onClick={async () => {
-                      const res = await handleCheckIn(
-                        mostLikelyToBePerson.split("+")[0],
-                        true,
-                        true,
-                        false
-                      );
-
-                      if (res) {
-                        setCheckInState("resting");
-                      }
-                    }}
+                    onClick={() => handleCheckInButtonOnClick()}
                     className="px-10 py-5"
                   >
                     Check in
@@ -297,7 +299,7 @@ const CheckIn: React.FC<Props> = () => {
                         ),
                       ].map((person) => (
                         <Button
-                          onClick={() => handleCheckIn(person.split("+")[0])}
+                          onClick={() => handleCheckInButtonOnClick(person.split("+")[0])}
                           key={person}
                         >
                           {person.split("+")[1]}
