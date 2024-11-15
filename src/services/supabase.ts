@@ -44,7 +44,6 @@ export interface GetParticipantsOptions {
 export const getNameFromId = async (id: string) => {
   try {
     let res = await getSupabaseClient().from(supabaseParticipantsTableName).select("*").eq("empid", id);
-    console.log(res)
     return res.data[0].name;
   } catch (error) {
     toast.error("Cannot get name for employee ID: " + id)
@@ -98,7 +97,7 @@ export const handleCheckIn = async (id: string, successfullyusedfacerecognition:
     toast.success("Checked in successfully.")
   }
 
-  console.log(error);
+  console.error(error);
   return data;
 };
 
@@ -127,7 +126,6 @@ export const markParticipantAsWinner = async (
 // Gets a list of all the available servicelines in the database
 // DO NOT RUN REPEATEDLY. VERY INEFFICIENT.
 export const getListOfServicelines = async (): Promise<string[]> => {
-  console.log(supabaseParticipantsTableName)
   const { data } = await getSupabaseClient()
     .from(supabaseParticipantsTableName)
     .select("serviceline");

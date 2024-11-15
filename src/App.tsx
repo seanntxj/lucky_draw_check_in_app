@@ -10,7 +10,6 @@ import LandingPage from "@/components/pages/landingPage";
 import PrizesAdminDashboard from "@/components/pages/prizesAdminDashboard";
 import DrawingMain from "@/components/pages/drawingMain";
 import { Toaster } from "sonner";
-import { AuroraBackground } from "./components/ui/aurora-background";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import BounceInMotionDiv from "./components/ui/bounce-in-motion-div";
@@ -50,7 +49,6 @@ function AnimatedRoutes() {
       )}
       {isAuthenticated && (
         <AnimatePresence mode="wait" >
-          {/* <AuroraBackground> */}
             <SidebarProvider defaultOpen={false}>
               <AppSidebar />
               {/* Main content beside sidebar */}
@@ -113,7 +111,6 @@ function AnimatedRoutes() {
                 </main>
               </div>
             </SidebarProvider>
-          {/* </AuroraBackground> */}
         </AnimatePresence>
       )}
     </div>

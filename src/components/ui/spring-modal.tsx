@@ -12,6 +12,8 @@ interface SpringModalProps {
 }
 
 export const SpringModal: React.FC<SpringModalProps> = ({ isOpen, setIsOpen, children }) => {
+  setIsOpen
+
   return (
     <AnimatePresence>
       {isOpen && (

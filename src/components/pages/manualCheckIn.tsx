@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { CheckCheckIcon, SearchIcon } from "lucide-react";
+import { CheckCheckIcon } from "lucide-react";
 import { handleCheckIn } from "@/services/supabase";
 import { useState } from "react";
 import { CrossCircledIcon } from "@radix-ui/react-icons";

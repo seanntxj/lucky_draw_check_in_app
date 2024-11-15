@@ -2,7 +2,6 @@ import { handleCheckIn } from "@/services/supabase";
 import React, { useEffect, useRef, useState } from "react";
 import Webcam from "react-webcam";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { useFaceAPIStore } from "@/services/globalVariables";
 import { toast } from "sonner";
 import { Card, CardContent, CardHeader } from "../ui/card";
@@ -30,7 +29,6 @@ const CheckIn: React.FC<Props> = () => {
   >("resting");
   const [mostLikelyToBePerson, setMostLikelyToBePerson] = useState<string>("");
   const [retryCount, setRetryCount] = useState<number>(0);
-  const [manualEntryUITextBox, setManualEntryUITextBox] = useState<string>("");
 
   // Captures an image, sends it to the server, and then returns the response into ids, ordered from most likely to least likely persons ids
   const capture = async (): Promise<string[] | null> => {
@@ -82,7 +80,6 @@ const CheckIn: React.FC<Props> = () => {
   const beginFacialRecognition = async () => {
     setIdCounts({});
     setRetryCount(0);
-    setManualEntryUITextBox("");
     setCheckInState("loading");
     setMostLikelyToBePerson("");
     setShowAlternativePeople(false);
@@ -132,7 +129,6 @@ const CheckIn: React.FC<Props> = () => {
         listOfPossiblePersonsExcept.push(key);
       }
     }
-    console.log("listOfPossiblePersonsExcept:", listOfPossiblePersonsExcept);
     return listOfPossiblePersonsExcept;
   };
 
