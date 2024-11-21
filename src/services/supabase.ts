@@ -5,12 +5,13 @@ import { toast } from "sonner";
 
 /* Main supabase client */
 let supabase: any; // Initialize supabase as any
-let supabaseParticipantsTableName: any; 
+let supabaseParticipantsTableName: any;
 
 export const initializeSupabase = (url: string, key: string) => {
   let supabaseUrlAux = url;
   let supabaseKeyAux = key;
-  supabaseParticipantsTableName = useSupabaseConfigStore.getState().supabaseParticipantsTableName;
+  supabaseParticipantsTableName =
+    useSupabaseConfigStore.getState().supabaseParticipantsTableName;
   supabase = createClient(supabaseUrlAux, supabaseKeyAux);
 };
 
@@ -27,8 +28,25 @@ export default { initializeSupabase, getSupabaseClient };
 
 // Auto initialise supabase in developement where .env is supplied
 if (import.meta.env.VITE_SUPABASE_URL !== undefined) {
-  initializeSupabase(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY);
+  initializeSupabase(
+    import.meta.env.VITE_SUPABASE_URL,
+    import.meta.env.VITE_SUPABASE_KEY
+  );
 }
+
+export const loginSupabase = async (email: string, password: string) => {
+  const { data, error } = await getSupabaseClient().auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    console.error(error);
+    toast.error("Cannot login: " + error.message);
+  } else {
+    toast.success("Logged in successfully.");
+  }
+};
 
 // initializeSupabase(supabaseUrl, supabaseKey);
 // For getting the participants with filters
@@ -43,13 +61,16 @@ export interface GetParticipantsOptions {
 
 export const getNameFromId = async (id: string) => {
   try {
-    let res = await getSupabaseClient().from(supabaseParticipantsTableName).select("*").eq("empid", id);
+    let res = await getSupabaseClient()
+      .from(supabaseParticipantsTableName)
+      .select("*")
+      .eq("empid", id);
     return res.data[0].name;
   } catch (error) {
-    toast.error("Cannot get name for employee ID: " + id)
+    toast.error("Cannot get name for employee ID: " + id);
     throw error;
   }
-} 
+};
 
 export const getParticipants = async (
   options: GetParticipantsOptions = {}
@@ -77,10 +98,19 @@ export const getParticipants = async (
   return data || [];
 };
 
-export const handleCheckIn = async (id: string, successfullyusedfacerecognition: boolean | null = true, status: boolean = true, silentAccept: boolean = false) => {
+export const handleCheckIn = async (
+  id: string,
+  successfullyusedfacerecognition: boolean | null = true,
+  status: boolean = true,
+  silentAccept: boolean = false
+) => {
   const { data, error } = await getSupabaseClient()
     .from(supabaseParticipantsTableName)
-    .update({ registered: status, registereddatetime: status ? new Date() : null, successfullyusedfacerecognition: successfullyusedfacerecognition })
+    .update({
+      registered: status,
+      registereddatetime: status ? new Date() : null,
+      successfullyusedfacerecognition: successfullyusedfacerecognition,
+    })
     .eq("empid", id)
     .select();
 
@@ -90,11 +120,11 @@ export const handleCheckIn = async (id: string, successfullyusedfacerecognition:
   }
 
   if (status === false) {
-    toast.success("Checked out successfully.")
+    toast.success("Checked out successfully.");
   }
 
   if (!silentAccept && status === true) {
-    toast.success("Checked in successfully.")
+    toast.success("Checked in successfully.");
   }
 
   console.error(error);
@@ -132,7 +162,9 @@ export const getListOfServicelines = async (): Promise<string[]> => {
 
   const groupSet = new Set<string>();
   if (data != null) {
-    data.forEach((obj: { serviceline: string; }) => groupSet.add(obj.serviceline));
+    data.forEach((obj: { serviceline: string }) =>
+      groupSet.add(obj.serviceline)
+    );
     return Array.from(groupSet);
   }
 

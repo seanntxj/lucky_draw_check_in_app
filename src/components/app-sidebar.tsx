@@ -17,8 +17,6 @@ import {
 import ThemeToggle from "@/components/ui/theme-toggle";
 import { Link } from "react-router-dom";
 import { CheckboxIcon, CheckIcon } from "@radix-ui/react-icons";
-import { Button } from "@/components/ui/button";
-import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 
 // Menu items.
 const items = [
@@ -51,7 +49,6 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const { logout } = useKindeAuth();
 
   return (
     <Sidebar variant="sidebar" collapsible="offcanvas">
@@ -71,7 +68,6 @@ export function AppSidebar() {
                 </SidebarMenuItem>
               ))}
               <ThemeToggle />
-              <Button onClick={logout}>Logout</Button>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
