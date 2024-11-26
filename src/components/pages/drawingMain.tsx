@@ -86,7 +86,7 @@ const DrawingMain: React.FC<Props> = () => {
     useConfettiAfterRevealName();
   };
 
-  const getNextAvailablePrize = (prizes: Prize[]): Prize | undefined => {
+  const getNextAvailablePrize = (prizes: Prize[]): Prize => {
     // Find the prize with the highest prizeNumber which is still available
     let highestPrizeNumber = 0;
     let highestPrize: Prize | undefined = undefined;
@@ -100,7 +100,7 @@ const DrawingMain: React.FC<Props> = () => {
         highestPrize = prize;
       }
     }
-    return highestPrize;
+    return highestPrize || prizes[0];
   };
 
   const incrementPrizeGiven = async (
