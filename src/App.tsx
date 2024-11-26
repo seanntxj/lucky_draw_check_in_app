@@ -1,11 +1,10 @@
 import {
-  BrowserRouter as Router,
   Routes,
   Route,
   useLocation,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-
+import { HashRouter } from 'react-router-dom';
 import LandingPage from "@/components/pages/landingPage";
 import PrizesAdminDashboard from "@/components/pages/prizesAdminDashboard";
 import DrawingMain from "@/components/pages/drawingMain";
@@ -92,12 +91,12 @@ function AnimatedRoutes() {
 
 function App() {
   return (
-    <Router basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <div>
         <AnimatedRoutes />
       </div>
       <Toaster closeButton richColors position="top-right" />
-    </Router>
+    </HashRouter>
   );
 }
 
