@@ -1,9 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { RandomName } from "@/components/ui/name-slot-machine";
-import {
-  getParticipants,
-  markParticipantAsWinner,
-} from "@/services/supabase";
+import { getParticipants, markParticipantAsWinner } from "@/services/supabase";
 import React, { useEffect, useState } from "react";
 import { Participant } from "@/schema/databaseItems";
 import { toast } from "sonner";
@@ -66,7 +63,9 @@ const DrawingMain: React.FC<Props> = () => {
     // Get a list of valid participants
     const participants = await getParticipants({ category: category });
     if (participants.length === 0) {
-      toast.error(`Can't get any participants. Ensure there's at least one participant that has registered.`)
+      toast.error(
+        `Can't get any participants. Ensure there's at least one participant that has registered.`
+      );
       return;
     }
 
@@ -147,7 +146,6 @@ const DrawingMain: React.FC<Props> = () => {
     }
     markParticipantAsWinner(winnerId, currentPrizeToBeGiven.prizeNumber)
       .then(() => {
-        incrementPrizeGiven();
         toast.success(`${chosenWinner.name} marked as a winner!`);
       })
       .catch((error) => {
@@ -166,7 +164,6 @@ const DrawingMain: React.FC<Props> = () => {
 
     markParticipantAsWinner(winnerId, null, false)
       .then(() => {
-        incrementPrizeGiven(0, -1);
         toast.success(`${chosenWinner.name} unmarked as a winner!`);
       })
       .catch((error) => {
@@ -190,6 +187,16 @@ const DrawingMain: React.FC<Props> = () => {
       {/* First page: Show the item to be won */}
       {showItemToBeWon && (
         <BounceInMotionDiv className="h-full w-full">
+          <Button
+            size="icon"
+            className="absolute bottom-5 left-5"
+            variant={"outline"}
+            onClick={() => {
+              incrementPrizeGiven(currentPrizeToBeGiven?.prizeNumber, -1);
+            }}
+          >
+            <ChevronLeftIcon />
+          </Button>
           <LuckyDrawItemBigDisplay
             imgLink={
               currentPrizeToBeGiven ? currentPrizeToBeGiven.imageLink : ""
@@ -275,7 +282,8 @@ const DrawingMain: React.FC<Props> = () => {
             onClick={() => {
               setShowPerson(false);
               setShowItemToBeWon(true);
-              setShowSlotMachineWinner(false)
+              setShowSlotMachineWinner(false);
+              incrementPrizeGiven();
             }}
           >
             <ChevronRightIcon />
