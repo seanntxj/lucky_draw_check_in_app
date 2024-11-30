@@ -41,7 +41,7 @@ export const useFaceAPIStore = create<{
   faceAPILink: string;
   setFaceAPILink: (link: string) => void;
 }>((set) => ({
-  faceAPILink: faceAPILink || `http://localhost:8080/check-face`,
+  faceAPILink: faceAPILink || `http://localhost:9001/check-face`,
   setFaceAPILink: (link) => set(() => ({ faceAPILink: link })),
 }));
 
