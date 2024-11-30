@@ -5,10 +5,35 @@ This repository contains the frontend code for the Lucky Draw Check-In applicati
 ## Description
 
 The Lucky Draw Check-In App is a web application built with React, TypeScript, and Tailwind CSS. It provides a user-friendly interface for participants to check in to a lucky draw event. The application includes features for both participant check-in and administrator prize management.
+## Local Installation
+
+### Prerequisites
+- Node v22.1.2, Node >v23 is not recommended as it'll have issues with importing modules.
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/seanntxj/lucky_draw_check_in_app
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd lucky_draw_check_in_app
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+## Usage
+
+1. Start the development server:
+   ```bash
+   npm run dev
+   ```
+2. Open your browser and go to `http://localhost:5173/lucky_draw_check_in_app/`.
 
 ## Supabase Setup
 
-This application uses Supabase for its backend. Before running the application, you need to create a Supabase project and set up a database table.
+This application uses Supabase for its backend. You need to create a Supabase project and set up a database table.
 
 1. **Create a Supabase Project:** Sign up for a Supabase account and create a new project. You'll receive a `SUPABASE_URL` and `SUPABASE_ANON_KEY`.
 
@@ -49,33 +74,3 @@ This application uses Supabase for its backend. Before running the application, 
 For face scan functionality, a [separate backend service](https://github.com/seanntxj/lucky_draw_check_in_face_scan_backend) is required. Refer to its README for detailed setup instructions.
 
 
-## Kinde Setup
-
-This application uses Kinde for authentication. You will need to create a Kinde project and obtain the necessary client ID and secret.
-
-1. **Create a Kinde Project:** Create a new project on the Kinde platform.  You will receive a `KINDE_CLIENT_ID` and `KINDE_CLIENT_SECRET`.
-
-2. **Configure Environment Variables:** Add the `KINDE_CLIENT_ID` and `KINDE_CLIENT_SECRET` to your `.env` file.
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/seanntxj/lucky_draw_check_in_app
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd lucky_draw_check_in_app
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-## Usage
-
-1. Start the development server:
-   ```bash
-   npm run dev
-   ```
-2. Open your browser and go to `http://localhost:5173`.
