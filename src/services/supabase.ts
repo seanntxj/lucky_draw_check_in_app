@@ -34,20 +34,6 @@ if (import.meta.env.VITE_SUPABASE_URL !== undefined) {
   );
 }
 
-export const loginSupabase = async (email: string, password: string) => {
-  const { data, error } = await getSupabaseClient().auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    console.error(error);
-    toast.error("Cannot login: " + error.message);
-  } else {
-    toast.success("Logged in successfully.");
-  }
-};
-
 // initializeSupabase(supabaseUrl, supabaseKey);
 // For getting the participants with filters
 export interface GetParticipantsOptions {
