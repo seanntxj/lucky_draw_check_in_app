@@ -74,19 +74,48 @@ useEffect(() => {
 
   const handleTestFaceAPILink = async () => {
     try {
-      await fetch(faceAPILink, {
+      // Create a small blank image (1x1 pixel)
+      const canvas = document.createElement("canvas");
+      canvas.width = 1;
+      canvas.height = 1;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.fillStyle = "black"; // Fill the canvas with black
+        ctx.fillRect(0, 0, 1, 1);
+      }
+  
+      // Convert the canvas to a Blob using a Promise
+      const blob = await new Promise<Blob | null>((resolve) => {
+        canvas.toBlob((b) => resolve(b), "image/jpeg");
+      });
+  
+      if (!blob) {
+        toast.error("Failed to create a dummy image for testing.");
+        return;
+      }
+  
+      // Create a File object from the Blob
+      const dummyFile = new File([blob], "dummy.jpg", { type: "image/jpeg" });
+  
+      // Create FormData and append the dummy file
+      const formData = new FormData();
+      formData.append("file", dummyFile);
+  
+      // Send the file to the API endpoint
+      const response = await fetch(`${faceAPILink}?resize=false`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ image: emptyImage }),
-      }).then(() => toast.success("Face API link is working!"));
+        body: formData,
+      });
+  
+      if (response.ok) {
+        toast.success("Face API link is working!");
+      } else {
+        toast.error(`Face API test failed with status ${response.status}`);
+      }
     } catch (error) {
-      toast.error(String(error));
+      toast.error(`Error testing Face API: ${String(error)}`);
     }
   };
-
-
 
   return (
     <Card>
