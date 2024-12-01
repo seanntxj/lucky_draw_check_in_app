@@ -31,20 +31,36 @@ const CheckIn: React.FC<Props> = () => {
   const [retryCount, setRetryCount] = useState<number>(0);
 
   // Captures an image, sends it to the server, and then returns the response into ids, ordered from most likely to least likely persons ids
-  const capture = async (): Promise<string[] | null> => {
+  const capture = async (resize: boolean = true): Promise<string[] | null> => {
     const imageSrc = webcamRef.current?.getScreenshot();
     if (imageSrc) {
       const img = new Image();
       img.src = imageSrc;
       img.onload = () => {
         const canvas = document.createElement("canvas");
-        canvas.width = 1280;
-        canvas.height = 900;
+        canvas.width = img.width;
+        canvas.height = img.height;
         const ctx = canvas.getContext("2d");
         if (ctx) {
-          ctx.drawImage(img, 0, 0, 640, 480);
-          const resizedImageSrc = canvas.toDataURL("image/jpeg");
-          sendImage(resizedImageSrc);
+          // Draw the captured image onto the canvas
+          ctx.drawImage(img, 0, 0);
+  
+          // Convert canvas to Blob (binary file format)
+          canvas.toBlob(
+            async (blob) => {
+              if (blob) {
+                // Create a File object from the Blob
+                const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+  
+                // Send the file to the server
+                await sendImage(file, resize);
+              } else {
+                console.error("Failed to convert canvas to Blob");
+              }
+            },
+            "image/jpeg",
+            0.9 // Quality setting for JPEG
+          );
         } else {
           console.error("Could not get 2D rendering context");
         }
@@ -54,20 +70,24 @@ const CheckIn: React.FC<Props> = () => {
     }
     return null;
   };
-
+  
   // Sends the image to the server and returns the response
-  const sendImage = async (imageSrc: string): Promise<string[] | null> => {
+  const sendImage = async (file: File, resize: boolean): Promise<string[] | null> => {
+    const formData = new FormData();
+    formData.append("file", file);
+  
     try {
-      const response = await fetch(faceAPILink, {
+      const response = await fetch(`${faceAPILink}?resize=${resize}`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ image: imageSrc }),
+        body: formData,
       });
+  
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+  
       const data = await response.json();
       setIds(data.potential_ids);
-      // console.log("API Response:", data);
       return data.potential_ids;
     } catch (error) {
       console.error("Error sending image:", error);
