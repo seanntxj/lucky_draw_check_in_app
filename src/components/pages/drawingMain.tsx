@@ -186,17 +186,7 @@ const DrawingMain: React.FC<Props> = () => {
       </div>
       {/* First page: Show the item to be won */}
       {showItemToBeWon && (
-        <BounceInMotionDiv className="h-full w-full">
-          <Button
-            size="icon"
-            className="absolute bottom-5 left-5"
-            variant={"outline"}
-            onClick={() => {
-              incrementPrizeGiven(currentPrizeToBeGiven?.prizeNumber, -1);
-            }}
-          >
-            <ChevronLeftIcon />
-          </Button>
+        <BounceInMotionDiv className="flex flex-col gap-4 h-full w-full">
           <LuckyDrawItemBigDisplay
             imgLink={
               currentPrizeToBeGiven ? currentPrizeToBeGiven.imageLink : ""
@@ -212,82 +202,92 @@ const DrawingMain: React.FC<Props> = () => {
                 : "Loading"
             }
           />
-          <Button
-            size="icon"
-            className="absolute bottom-5 right-5"
-            onClick={() => {
-              setShowItemToBeWon(false);
-              setShowPerson(true);
-            }}
-          >
-            <ChevronRightIcon />
-          </Button>
+          <div className="flex mb-4 justify-between">
+            <Button
+              size="icon"
+              variant={"outline"}
+              onClick={() => {
+                incrementPrizeGiven(currentPrizeToBeGiven?.prizeNumber, -1);
+              }}
+            >
+              <ChevronLeftIcon />
+            </Button>
+            <Button
+              size="icon"
+              onClick={() => {
+                setShowItemToBeWon(false);
+                setShowPerson(true);
+              }}
+            >
+              <ChevronRightIcon />
+            </Button>
+          </div>
         </BounceInMotionDiv>
       )}
       {/* Draw the winner from a list of valid participants */}
       {showPerson && (
-        <BounceInMotionDiv className="h-full w-full flex items-center justify-center">
-          <Button
-            size="icon"
-            className="absolute bottom-5 left-5"
-            variant="ghost"
-            onClick={() => {
-              setShowItemToBeWon(true);
-              setShowPerson(false);
-            }}
-          >
-            <ChevronLeftIcon />
-          </Button>
-
+        <BounceInMotionDiv className="h-full w-full flex flex-col items-center justify-center gap-4">
           <RandomName
             names={nameSlotMachineList.map((participant) => participant.name)}
             showWinner={showSlotMachineWinner}
             transitionDuration={transitionDuration}
           />
 
-          <div className="flex gap-4 absolute bottom-5">
-            {showSlotMachineWinner ? (
-              <Button onClick={() => setShowSlotMachineWinner(false)}>
-                Reset
-              </Button>
-            ) : (
-              <Button
-                variant="outline"
-                onClick={() => drawAndShowSlotMachineWinner()}
-              >
-                Draw a Winner
-              </Button>
-            )}
-            {showSlotMachineWinner && (
-              <div className="flex gap-2">
-                <Button
-                  variant="secondary"
-                  onClick={() => handleMarkWinnerOnServer()}
-                >
-                  Mark winner on server
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => handleUndoWinnerOnServer()}
-                >
-                  Undo winner on server
-                </Button>
-              </div>
-            )}
-          </div>
+          <div className="flex w-full justify-between">
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => {
+                setShowItemToBeWon(true);
+                setShowPerson(false);
+              }}
+            >
+              <ChevronLeftIcon />
+            </Button>
 
-          <Button
-            size="icon"
-            className="absolute bottom-5 right-5"
-            onClick={() => {
-              setShowPerson(false);
-              setShowItemToBeWon(true);
-              setShowSlotMachineWinner(false);
-              incrementPrizeGiven();
-            }}
-          >
-            <ChevronRightIcon />
-          </Button>
+            <div className="flex gap-4 mb-4">
+              {showSlotMachineWinner ? (
+                <Button onClick={() => setShowSlotMachineWinner(false)}>
+                  Reset
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  onClick={() => drawAndShowSlotMachineWinner()}
+                >
+                  Draw a Winner
+                </Button>
+              )}
+              {showSlotMachineWinner && (
+                <div className="flex gap-2">
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleMarkWinnerOnServer()}
+                  >
+                    Mark winner on server
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => handleUndoWinnerOnServer()}
+                  >
+                    Undo winner on server
+                  </Button>
+                </div>
+              )}
+            </div>
+
+            <Button
+              size="icon"
+              onClick={() => {
+                setShowPerson(false);
+                setShowItemToBeWon(true);
+                setShowSlotMachineWinner(false);
+                incrementPrizeGiven();
+              }}
+            >
+              <ChevronRightIcon />
+            </Button>
+          </div>
         </BounceInMotionDiv>
       )}
     </div>

@@ -22,8 +22,8 @@ const LuckyDrawItemBigDisplay: React.FC<LuckyDrawItemBigDisplayProps> = (
         </div>
         <div className="shadow-xl flex items-center p-6 rounded-xl">
           <div className="flex flex-col gap-4">
-            <h1 className="text-8xl font-bold">{title}</h1>
-            <h2 className="text-3xl font-semibold text-zinc-700">{desc}</h2>
+            <h1 className="text-7xl font-bold">{title}</h1>
+            <h2 className="text-6xl font-semibold text-zinc-700">{desc}</h2>
           </div>
         </div>
       </div>
