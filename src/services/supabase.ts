@@ -58,6 +58,22 @@ export const getNameFromId = async (id: string) => {
   }
 };
 
+export const getParticipantsByName = async (
+  query: string
+): Promise<Participant[]> => {
+  const { data, error } = await supabase
+    .from("participants")
+    .select("*")
+    .ilike("name", `%${query.replace(/\s+/g, "").toLowerCase()}%`);
+
+  if (error) {
+    toast.error("Error fetching participants:", error);
+    return [];
+  }
+
+  return data;
+};
+
 export const getParticipants = async (
   options: GetParticipantsOptions = {}
 ): Promise<Participant[]> => {
@@ -102,18 +118,22 @@ export const handleCheckIn = async (
 
   if (error) {
     toast.error("Error while checking in: " + error.message);
+    console.log(error);
     throw error;
   }
 
+  if (data.length == 0 || data == null) {
+    toast.error(`Could not find user with ID ${id}`);
+  }
+
   if (status === false) {
-    toast.success("Checked out successfully.");
+    toast.warning(`Checked out ${data[0].name} successfully.`);
   }
 
-  if (!silentAccept && status === true) {
-    toast.success("Checked in successfully.");
+  if (!silentAccept && status === true && data.length != 0) {
+    toast.success(`Checked in ${data[0].name} successfully.`);
   }
 
-  console.error(error);
   return data;
 };
 
