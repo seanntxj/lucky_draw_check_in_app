@@ -15,9 +15,11 @@ import BounceInMotionDiv from "./components/ui/bounce-in-motion-div";
 import CheckIn from "./components/pages/checkIn";
 import SettingsPage from "./components/pages/settingsPage";
 import ManualCheckInPage from "./components/pages/manualCheckIn";
+import { usePrizeStore } from "./services/globalVariables";
 
 function AnimatedRoutes() {
   const location = useLocation(); // Get current location for transitions
+  const { prizes } = usePrizeStore();
 
   return (
     <div className="h-full w-full">
@@ -44,7 +46,7 @@ function AnimatedRoutes() {
                   path="/dashboard"
                   element={
                     <BounceInMotionDiv className="h-full w-full">
-                      <PrizesAdminDashboard />
+                      {prizes.length > 0 ? <PrizesAdminDashboard /> : <LandingPage/> }
                     </BounceInMotionDiv>
                   }
                 />

@@ -248,7 +248,7 @@ const DrawingMain: React.FC<Props> = () => {
             <div className="flex gap-4 mb-4">
               {showSlotMachineWinner ? (
                 <Button onClick={() => setShowSlotMachineWinner(false)}>
-                  Reset
+                  Re-draw winner 
                 </Button>
               ) : (
                 <Button
@@ -264,13 +264,13 @@ const DrawingMain: React.FC<Props> = () => {
                     variant="secondary"
                     onClick={() => handleMarkWinnerOnServer()}
                   >
-                    Mark winner on server
+                    Confirm winner
                   </Button>
                   <Button
                     variant="secondary"
                     onClick={() => handleUndoWinnerOnServer()}
                   >
-                    Undo winner on server
+                    Undo confirm winner
                   </Button>
                 </div>
               )}
