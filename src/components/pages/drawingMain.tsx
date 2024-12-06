@@ -111,12 +111,21 @@ const DrawingMain: React.FC<Props> = () => {
       prizeNumber = currentPrizeToBeGiven?.prizeNumber || 0;
     }
 
-    const prizeToIncrementGivenValue = prizes.filter(
+    let prizeToIncrementGivenValue = prizes.filter(
       (prize) => prize.prizeNumber == prizeNumber
     )[0];
+
+    if (prizeToIncrementGivenValue.given === 0 && numberToIncrement < 0) { 
+      prizeNumber += 1;
+      prizeToIncrementGivenValue = prizes.filter(
+        (prize) => prize.prizeNumber == prizeNumber
+      )[0];
+    }
+
     const otherPrizes = prizes.filter(
       (prize) => prize.prizeNumber != prizeNumber
     );
+
     prizeToIncrementGivenValue.given =
       Number(prizeToIncrementGivenValue.given) + numberToIncrement;
     const newPrizes = [prizeToIncrementGivenValue, ...otherPrizes];
